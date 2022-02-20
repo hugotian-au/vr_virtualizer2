@@ -108,221 +108,13 @@ public class Pusher : MonoBehaviour {
 
     float lastTime = 0.0f;
     float lastGarbageTime = 0.0f;
-    private float mouseScrollDeltaY = 0.0f;
-    private float mouseMoveDeltaX = 0.0f;
-    private float mouseMoveDeltaY = 0.0f;
-
-    private Vector2 MousePositionLast;
-    private Vector2 MousePositionNew;
-    public float MouseSensitivity;
-    private Vector2 MouseMoveDirection;
     public float fps = 1.0f;
     // Update is called once per frame
-    private bool isRightButtonDown=false;
-    private Vector3 lastMousePosition = Vector3.zero;
-
-    private Vector3 cameraPosition = new Vector3(1800, 7300, -5300); //[735, -1575, -162]; //[1000, -500, 500];
-    private Vector3 cameraTargetPosition = new Vector3(0, 0, 0);
-    private Vector3 previousTargetPosition = new Vector3(0, 0, 0);
-    private float currentDistanceToTarget = 500;
-
-    private Matrix4x4 destinationCameraMatrix = Matrix4x4.identity;
-    private float cameraSpeed = 0.0001f;
-    private Matrix4x4 currentCameraMatrix = Matrix4x4.identity;
-    private Matrix4x4 realProjectionMatrix = Matrix4x4.identity;
-    private float unprocessedScrollDY = 0;
-    private float unprocessedMouseDX = 0;
-    private float unprocessedMouseDY = 0;
-
-    private int scrollWheelMultiplier = 10000;
     void Update () {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ToggleDemoMode();
         }
-        if(Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("Mouse down:" + Input.mousePosition);
-            isRightButtonDown = true;
-        }
-        if(Input.GetMouseButtonUp(1))
-        {
-            Debug.Log("Mouse up:" + Input.mousePosition);
-            isRightButtonDown = false;
-            MousePositionLast = Vector2.zero;
-        }
-
-        unprocessedScrollDY += Input.GetAxis("Mouse ScrollWheel");
-        Debug.Log("unprocessedScrollDY:" + unprocessedScrollDY);
-        if(isRightButtonDown)
-        {
-            MousePositionLast = MousePositionNew;
-            Debug.Log("MousePositionLast: " + MousePositionLast);
-            MousePositionNew = Input.mousePosition;
-            Debug.Log("MousePositionNew: " + MousePositionNew);
-            MouseMoveDirection = MousePositionNew - MousePositionLast;
-            Debug.Log("MouseMoveDirection: " + MouseMoveDirection);
-
-            unprocessedMouseDX += MouseMoveDirection.x;
-            unprocessedMouseDX += MouseMoveDirection.y;
-        }
-
-        Vector3 cameraVelocity = Vector3.zero;
-        Vector3 cameraTargetVelocity = Vector3.zero;
-        Debug.Log("here MouseMoveDirection: " + MouseMoveDirection);
-
-
-        destinationCameraMatrix = lookAt(cameraPosition[0], cameraPosition[1], cameraPosition[2], cameraTargetPosition[0], cameraTargetPosition[1], cameraTargetPosition[2], 0, 1, 0);
-        var ev = cameraPosition;
-        var cv = cameraTargetPosition;
-        var uv = new Vector3(0, 1, 0);
-        currentDistanceToTarget = magnitude(add(ev, negate(cv)));
-
-        var mCamera = destinationCameraMatrix; // translation is based on what direction you're facing,
-        var vCamX = normalize(new Vector3(mCamera[0], mCamera[4], mCamera[8]));
-        var vCamY = normalize(new Vector3(mCamera[1], mCamera[5], mCamera[9]));
-        var _vCamZ = normalize(new Vector3(mCamera[2], mCamera[6], mCamera[10]));
-        cameraSpeed = 0.001f; // 0.01;
-
-        var forwardVector = normalize(add(ev, negate(cv))); // vector from the camera to the center point
-        var horizontalVector = normalize(crossProduct(uv, forwardVector)); // a "right" vector, orthogonal to n and the lookup vector
-        var verticalVector = crossProduct(forwardVector, horizontalVector); // resulting orthogonal vector to n and u, as the up vector isn't necessarily one anymore
-
-        if (unprocessedScrollDY != 0) 
-        {
-            // increase speed as distance increases
-            var nonLinearFactor = 1.05f; // closer to 1 = less intense log (bigger as distance bigger)
-            var distanceMultiplier = Mathf.Max(1, getBaseLog(nonLinearFactor, currentDistanceToTarget) / 100);
-            var vector = scalarMultiply(forwardVector, cameraSpeed * distanceMultiplier * scrollWheelMultiplier * getCameraZoomSensitivity() * unprocessedScrollDY);
-            // prevent you from zooming beyond it
-            var isZoomingIn = unprocessedScrollDY < 0;
-            if (isZoomingIn && currentDistanceToTarget <= magnitude(vector)) {
-                // zoom in at most halfway to the origin if you're going to overshoot it
-                var percentToClipBy = 0.5f * currentDistanceToTarget / magnitude(vector);
-                vector = scalarMultiply(vector, percentToClipBy);
-            }
-
-            cameraVelocity = add(cameraVelocity, vector);
-
-            unprocessedScrollDY = 0;            
-        }
-        
-        var distancePanFactor = Mathf.Max(1, currentDistanceToTarget / 1000); // speed when 1 meter units away, scales up w/ distance
-
-        if (unprocessedMouseDX != 0) 
-        {
-            // pan if shift held down
-            if (Input.GetKeyDown(KeyCode.LeftShift)) {
-                // STRAFE LEFT-RIGHT
-                var vector = scalarMultiply(horizontalVector, distancePanFactor * unprocessedMouseDX * getCameraPanSensitivity());
-                cameraTargetVelocity = add(cameraTargetVelocity, vector);
-                cameraVelocity = add(cameraVelocity, vector);
-            } else {
-                // rotate otherwise 
-                var vector = scalarMultiply(vCamX, cameraSpeed * getCameraRotateSensitivity() * (2 * Mathf.PI * currentDistanceToTarget) * unprocessedMouseDX);
-                cameraVelocity = add(cameraVelocity, vector);
-            }
-
-            unprocessedMouseDX = 0;
-        }
-
-        if (unprocessedMouseDY != 0) 
-        {
-            // pan if shift held down
-            if (Input.GetKeyDown(KeyCode.LeftShift)) {
-                // STRAFE UP-DOWN
-                var vector = scalarMultiply(verticalVector, distancePanFactor * unprocessedMouseDY * getCameraPanSensitivity());
-                cameraTargetVelocity = add(cameraTargetVelocity, vector);
-                cameraVelocity = add(cameraVelocity, vector);
-            } else {
-                // rotate otherwise 
-                var vector = scalarMultiply(vCamY, cameraSpeed * getCameraRotateSensitivity() * (2 * Mathf.PI * currentDistanceToTarget) * unprocessedMouseDY);
-                cameraVelocity = add(cameraVelocity, vector);
-            }
-
-            unprocessedMouseDY = 0;
-        }
-
-        var isAboutToFlip = wouldCameraFlip(verticalVector, cameraVelocity, cameraTargetVelocity);
-        var shouldMoveCamera = !isAboutToFlip; // prevent the camera from flipping when it's about to cross a singularity
-
-        if (shouldMoveCamera)
-        {
-            // TODO: limit velocity to at most bring you to +epsilon distance to target, instead of flipping world
-            //  when you go through it / beyond it
-            cameraPosition = add(cameraPosition, cameraVelocity);
-            cameraTargetPosition = add(cameraTargetPosition, cameraTargetVelocity);
-        }
-
-        currentCameraMatrix = tweenMatrix(currentCameraMatrix, destinationCameraMatrix.inverse, 0.3f);
-
-        // camera matrix (inverse view matrix), converted from toolbox format to Matrix4x4
-        Matrix4x4 mvMatrix = currentCameraMatrix;
-        //mvMatrix.SetColumn(0, new Vector4(currentCameraMatrix[0], currentCameraMatrix[1], currentCameraMatrix[2], currentCameraMatrix[3]));
-        //mvMatrix.SetColumn(1, new Vector4(mvarray[4].AsFloat, mvarray[5].AsFloat, mvarray[6].AsFloat, mvarray[7].AsFloat));
-        //mvMatrix.SetColumn(2, new Vector4(mvarray[8].AsFloat, mvarray[9].AsFloat, mvarray[10].AsFloat, mvarray[11].AsFloat));
-        //mvMatrix.SetColumn(3, new Vector4(mvarray[12].AsFloat, mvarray[13].AsFloat, mvarray[14].AsFloat, mvarray[15].AsFloat));
-
-        // projection matrix, converted from toolbox format to Matrix4x4.. we use the same projection matrix to match camera FoV and aspect ratio
-        Matrix4x4 pMatrix = realProjectionMatrix;
-        //pMatrix.SetColumn(0, new Vector4(parray[0].AsFloat, parray[1].AsFloat, parray[2].AsFloat, parray[3].AsFloat));
-        //pMatrix.SetColumn(1, new Vector4(parray[4].AsFloat, -parray[5].AsFloat, parray[6].AsFloat, parray[7].AsFloat));
-        //pMatrix.SetColumn(2, new Vector4(parray[8].AsFloat, parray[9].AsFloat, parray[10].AsFloat, parray[11].AsFloat));
-        //pMatrix.SetColumn(3, new Vector4(parray[12].AsFloat, parray[13].AsFloat, parray[14].AsFloat, parray[15].AsFloat));
-        lastProjectionMatrix = pMatrix;
-
-        float fov_y = 2.0f * Mathf.Atan(1.0f / pMatrix.m11) * 180.0f / Mathf.PI;
-        float fov_y_prime = 2.0f * Mathf.Atan(resHeight * fov_y / 2.0f * Mathf.Deg2Rad / phoneResHeight) * Mathf.Rad2Deg;
-        float aspect = resWidth / (float)resHeight;
-
-        cam.GetComponent<Camera>().fieldOfView = fov_y;
-        //cam.GetComponent<Camera>().fieldOfView = fov_y_prime;
-        cam.GetComponent<Camera>().aspect = aspect;
-        calculated_fovy = fov_y;
-        calculated_aspect = aspect;
-        calculated_fovy_prime = fov_y_prime;
-
-        //Debug.Log("reality zone origin!");
-        // Matrix4x4 cameraToWorld = mvMatrix.inverse;
-        Matrix4x4 cameraToWorld = mvMatrix; // already inverse of view matrix so don't need to invert again
-        Vector4 lastColumn = cameraToWorld.GetColumn(3);
-
-        // calculate forward and up vectors from toolbox's camera matrix so that we can set the unity camera to match it
-        Vector3 camPos = cameraToWorld.MultiplyPoint(new Vector3(0, 0, 0));
-        Vector3 forwardPos = cameraToWorld.MultiplyPoint(new Vector3(0, 0, 1));
-        Vector3 upPos = cameraToWorld.MultiplyPoint(new Vector3(0, 1, 0));
-
-        Vector3 forwardVec = forwardPos - camPos;
-        Vector3 upVec = upPos - camPos;
-
-        // these need to be inverted for some reason.... maybe it's converting from right-handed (vuforia) to left-handed (unity)?
-        upVec.x = -upVec.x;
-        upVec.y = -upVec.y;
-        upVec.z = -upVec.z;
-
-        forwardVec.x = -forwardVec.x;
-        forwardVec.y = -forwardVec.y;
-        forwardVec.z = -forwardVec.z;
-
-        forwardPoint.transform.localPosition = (forwardVec).normalized * 0.2f + camPos / 1000.0f;
-        forwardPoint.transform.forward = cam.transform.position - forwardPoint.transform.position;
-        upPoint.transform.localPosition = (upVec).normalized * 0.2f + camPos / 1000.0f;
-        upPoint.transform.forward = cam.transform.position - upPoint.transform.position;
-
-        Quaternion camRotation = Quaternion.LookRotation(forwardVec, upVec);
-        
-
-        string testId = "test";
-        // divide by 1000 because toolbox uses mm not meters. store in cameraInfo list and render later so that multiple clients don't conflict
-        // cameraInfo[testId] = new CameraInformation(new Vector3(camPos.x / 1000.0f, camPos.y / 1000.0f, camPos.z / 1000.0f), camRotation);
-        // Vector3 offset = Camera.main.ScreenToWorldPoint(new Vector3(MouseMoveDirection.x, MouseMoveDirection.y, Camera.main.nearClipPlane));
-        // offset *= 10;
-        // Vector3 offset2 = new Vector3(0.0f, 0.0f, 0.0f);
-        // Vector3 newPosition = cam.transform.localPosition + offset;
-        // Debug.Log("cam.transform.localPosition + offset: " + newPosition);
-        // cam.transform.localPosition -= offset * 0.01f;
-        // Debug.Log("offset: " + offset);
-
 		if(Time.time - lastTime > 1.0f/fps)
         {
             lastTime = Time.time;
@@ -396,90 +188,6 @@ public class Pusher : MonoBehaviour {
         }
 	}
 
-    // checks if moving the cameraPosition and cameraTargetPosition by the given velocities would cause the vertical vector to cross a singularity and flip the entire camera view
-    bool wouldCameraFlip(Vector3 currentVerticalVector,
-                         Vector3 velocity,
-                         Vector3 targetVelocity)
-    {
-        var nextPosition = add(cameraPosition, velocity);
-        var nextTargetPosition = add(cameraTargetPosition, targetVelocity);
-        var ev = nextPosition;
-        var cv = nextTargetPosition;
-        var uv = new Vector3(0, 1, 0);
-        var nextForwardVector = normalize(add(ev, negate(cv))); // vector from the camera to the center point
-        var nextHorizontalVector = normalize(crossProduct(uv, nextForwardVector)); // a "right" vector, orthogonal to n and the lookup vector
-        var nextVerticalVector = crossProduct(nextForwardVector, nextHorizontalVector); // resulting orthogonal vector to n and u, as the up vector isn't necessarily one anymore
-
-        return ((currentVerticalVector[2] * nextVerticalVector[2]) < 0) &&
-            (Mathf.Abs(currentVerticalVector[0]) + Mathf.Abs(nextVerticalVector[0])) > 1; // flipped from -1 to 1, not passing through 0
-    }
-
-    float getCameraPanSensitivity()
-    {
-        return 0.01f;
-    }
-
-    float getCameraRotateSensitivity() 
-    {
-        return 0.01f;
-    }
-
-    float getCameraZoomSensitivity()
-    {
-        return 0.01f;
-    }
-
-    Vector3 scalarMultiply(Vector3 A, float x) {
-        return new Vector3(A[0] * x, A[1] * x, A[2] * x);
-    }
-
-    float getBaseLog(float x, float y) {
-        return Mathf.Log(y) / Mathf.Log(x);
-    }
-
-    Matrix4x4 lookAt(float eyeX, float eyeY, float eyeZ, float centerX, float centerY, float centerZ, float upX, float upY, float upZ) => Matrix4x4.LookAt(new Vector3(eyeX, eyeY, eyeZ),
-                                new Vector3(centerX, centerY, centerZ),
-                                new Vector3(upX, upY, upZ));
-
-    Vector3 negate(Vector3 A) => new Vector3(-A[0], -A[1], -A[2]);
-
-    Vector3 add(Vector3 A, Vector3 B) {
-        return new Vector3(A[0] + B[0], A[1] + B[1], A[2] + B[2]);
-    }
-
-    float magnitude(Vector3 A) {
-        return Mathf.Sqrt(A[0] * A[0] + A[1] * A[1] + A[2] * A[2]);
-    }
-
-    Vector3 normalize(Vector3 A) {
-        var mag = magnitude(A);
-        return new Vector3(A[0] / mag, A[1] / mag, A[2] / mag);
-    }
-
-    Vector3 crossProduct(Vector3 A, Vector3 B) {
-        var a = A[1] * B[2] - A[2] * B[1];
-        var b = A[2] * B[0] - A[0] * B[2];
-        var c = A[0] * B[1] - A[1] * B[0];
-        return new Vector3(a, b, c);
-    }
-
-    float dotProduct(Vector3 A, Vector3 B) => A[0] * B[0] + A[1] * B[1] + A[2] * B[2];
-
-    Matrix4x4 tweenMatrix(Matrix4x4 currentMatrix, Matrix4x4 destination, float tweenSpeed=0.5f) 
-    {
-        if (tweenSpeed <= 0 || tweenSpeed >= 1) 
-        {
-            Debug.Log("tween speed should be between 0 and 1. cannot be tweened so just assigning current=destination");
-            return destination;
-        }
-
-        var m = new Matrix4x4();
-        for (int i = 0; i < 16; i++)
-        {
-            m[i] = destination[i] * tweenSpeed + (currentMatrix[i] * (1.0f - tweenSpeed));
-        }
-        return m;
-    }
     int getAdjustedResWidth()
     {
         if (cameraInfo.Count == 0)
@@ -820,7 +528,7 @@ public class Pusher : MonoBehaviour {
     {
         if (!connected)
         {
-            // return;
+           return;
         }
         connected = false;
         Debug.Log("server disconnected");
@@ -851,7 +559,7 @@ public class Pusher : MonoBehaviour {
         //resHeight = resHeight * 2;
         Destroy(tex);
         tex = new Texture2D(resWidth, resHeight, TextureFormat.ARGB32, false);
-        cam.GetComponent<Camera>().aspect = resWidth / (float)resHeight;
+        cam.GetComponent<Camera>().aspect = (float)resWidth / (float)resHeight;
         Destroy(rt);
         rt = new RenderTexture(resWidth, resHeight, 32);
     }
@@ -1052,7 +760,6 @@ public class Pusher : MonoBehaviour {
         JSONNode jn = JSON.Parse(jsonPacket);
 
         string editorId = jn["editorId"];
-        Debug.Log("editorId is:" + editorId);
         if (!editorToSocketId.ContainsKey(editorId))
         {
             Debug.Log("Pose from new editor (" + editorId + ")");
@@ -1085,7 +792,7 @@ public class Pusher : MonoBehaviour {
 
         float fov_y = 2.0f * Mathf.Atan(1.0f / pMatrix.m11) * 180.0f / Mathf.PI;
         float fov_y_prime = 2.0f * Mathf.Atan(resHeight * fov_y / 2.0f * Mathf.Deg2Rad / phoneResHeight) * Mathf.Rad2Deg;
-        float aspect = resWidth / (float)resHeight;
+        float aspect = (float)resWidth / (float)resHeight;
 
         cam.GetComponent<Camera>().fieldOfView = fov_y;
         //cam.GetComponent<Camera>().fieldOfView = fov_y_prime;
@@ -1174,7 +881,7 @@ public class Pusher : MonoBehaviour {
 
 
         //float aspect = Mathf.Abs(pMatrix.m00/pMatrix.m11);
-        float aspect = resWidth / (float)resHeight;
+        float aspect = (float)resWidth / (float)resHeight;
 
 
         cam.GetComponent<Camera>().fieldOfView = fov_y;
@@ -1446,7 +1153,7 @@ public class Pusher : MonoBehaviour {
 
 
         //float aspect = Mathf.Abs(pMatrix.m00/pMatrix.m11);
-        float aspect = resWidth / (float)resHeight;
+        float aspect = (float)resWidth / (float)resHeight;
 
 
         //cam.GetComponent<Camera>().fieldOfView = fov_y;

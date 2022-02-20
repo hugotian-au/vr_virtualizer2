@@ -28,10 +28,12 @@ public class akplay : MonoBehaviour {
 
     public bool verbose = false;
 
-    const string dllName = "D:\\Code\\vr_virtualizer\\Assets\\Plugins\\AKPlugin119.dll";
+    const string dllName = "AKPlugin119";
 
     static string filePath;
     static ReaderWriterLock locker = new ReaderWriterLock();
+
+    private int lastDay = System.DateTime.Now.Day;
 
     //Plugin entry point
     #region
@@ -1232,6 +1234,12 @@ public class akplay : MonoBehaviour {
         //Debug.Log("************* setting cameras ready to true");
         camerasReady = true;
 
+        if (System.DateTime.Now.Day != lastDay)
+        {
+            lastDay = System.DateTime.Now.Day;
+            ResetLines();
+        }
+
         if (Input.GetKeyDown(KeyCode.R))
         {
             ResetLines();
@@ -1690,7 +1698,7 @@ public class akplay : MonoBehaviour {
 
     private void SendSkeletonData()
     {
-        if (!objectPositionSender)
+        if (!objectPositionSender || primaryTrackerIndex >= skeletonVisArray.Length)
         {
             return;
         }
