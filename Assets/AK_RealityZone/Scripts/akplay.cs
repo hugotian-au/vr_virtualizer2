@@ -791,7 +791,6 @@ public class akplay : MonoBehaviour {
 
 
             ci.visualization = visualizationArray[i];
-            return;
             ci.visualization.transform.position = new Vector3(i*3.0f, 0.0f, 0.0f);
             ci.visualization.GetComponent<AK_visualization>().colorTex = ci.colorTex;
             ci.visualization.GetComponent<AK_visualization>().depthTex = ci.depthTex;
