@@ -355,9 +355,10 @@ public class AK_radiusFeature : MonoBehaviour {
         if (!camerasReady && AK_receiver.GetComponent<akplay>().camerasReady)
         {
             camerasReady = true;
+
             do_setup(); //i think setup() is Unity reserved.
         }
-
+   
         if (camerasReady)
         {
             //run feature detector:
@@ -701,10 +702,13 @@ public class AK_radiusFeature : MonoBehaviour {
 
         camInfoList = AK_receiver.GetComponent<akplay>().camInfoList;
 
-        //Debug.Log("setting up cam info list count: " + camInfoList.Count);
-        //camInfoBuffer = new ComputeBuffer(camInfoList.Count, 268);  //3 matrices and 19 floats: 3*64 + 19*4 = 268
-        camInfoBuffer = new ComputeBuffer(camInfoList.Count, 328);  //3 matrices and 19 floats: 3*64 + 34*4 = 328
-        getCameraInfo();
+        if (camInfoList.Count > 0)
+        {
+            //Debug.Log("setting up cam info list count: " + camInfoList.Count);
+            //camInfoBuffer = new ComputeBuffer(camInfoList.Count, 268);  //3 matrices and 19 floats: 3*64 + 19*4 = 268
+            camInfoBuffer = new ComputeBuffer(camInfoList.Count, 328);  //3 matrices and 19 floats: 3*64 + 34*4 = 328
+            getCameraInfo();
+        }
     }
 
 
