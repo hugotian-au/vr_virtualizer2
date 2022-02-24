@@ -2906,7 +2906,7 @@ MonoBehaviour:
   AK_receiver: {fileID: 1640398109}
   threshold_display_list: []
   checkerboard_display_list: []
-  calibrationSaverAndLoader: {fileID: 0}
+  calibrationSaverAndLoader: {fileID: 299451859}
 --- !u!4 &1339584921
 Transform:
   m_ObjectHideFlags: 0
