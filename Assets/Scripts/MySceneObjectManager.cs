@@ -13,6 +13,6 @@ public class MySceneObjectManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PhotonNetwork.InstantiateSceneObject(this.sceneObject1.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+        // PhotonNetwork.InstantiateSceneObject(this.sceneObject1.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
     }
 }
