@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class MySceneObjectManager : MonoBehaviour
+public class MySceneObjectManager : MonoBehaviourPunCallbacks
 {
     [Tooltip("The prefab to use for representing scene object located in the room")]
     public GameObject sceneObject1;
@@ -13,6 +13,17 @@ public class MySceneObjectManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // PhotonNetwork.SetMasterClient(PhotonNetwork.MasterClient.GetNext());
+        var pv = GetComponent<PhotonView>();
+        pv.RPC("RPC_InstantiateSceneObject", RpcTarget.All, 
+            this.sceneObject1.name, new Vector3(0f, 0f, 0f), Quaternion.identity);
+
         // PhotonNetwork.InstantiateSceneObject(this.sceneObject1.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+    }
+
+    [PunRPC]
+    void RPC_InstantiateSceneObject(string name, Vector3 position, Quaternion rotation)
+    {
+        PhotonNetwork.InstantiateSceneObject(name, position, rotation, 0);
     }
 }
