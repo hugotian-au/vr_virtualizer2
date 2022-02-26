@@ -14,11 +14,12 @@ public class MySceneObjectManager : MonoBehaviourPunCallbacks
     void Start()
     {
         // PhotonNetwork.SetMasterClient(PhotonNetwork.MasterClient.GetNext());
-        var pv = GetComponent<PhotonView>();
-        pv.RPC("RPC_InstantiateSceneObject", RpcTarget.All, 
-            this.sceneObject1.name, new Vector3(0f, 0f, 0f), Quaternion.identity);
-
-        // PhotonNetwork.InstantiateSceneObject(this.sceneObject1.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            var pv = GetComponent<PhotonView>();
+            pv.RPC("RPC_InstantiateSceneObject", RpcTarget.All,
+                this.sceneObject1.name, new Vector3(0f, 0f, 0f), Quaternion.identity);
+        }
     }
 
     [PunRPC]
