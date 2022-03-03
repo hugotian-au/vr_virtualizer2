@@ -20,7 +20,7 @@ MonoBehaviour:
     AppVersion: 
     UseNameServer: 1
     FixedRegion: 
-    Server: 
+    Server: 192.168.1.161
     Port: 0
     ProxyServer: 
     Protocol: 0
@@ -41,5 +41,5 @@ MonoBehaviour:
   - RespawnSpaceship
   - RPC_InstantiateSceneObject
   DisableAutoOpenWizard: 1
-  ShowSettings: 0
+  ShowSettings: 1
   DevRegionSetOnce: 1
