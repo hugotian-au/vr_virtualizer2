@@ -3312,7 +3312,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localPlayerPrefab: {fileID: 4923945422041339467, guid: e97addadf4a96f042a37962cf3d8b45e,
     type: 3}
-  remotePlayerPrefab: {fileID: 3880589362286977749, guid: e36946e232908b04b848d7c030b230bc,
+  remotePlayerPrefab: {fileID: 7257929698362599201, guid: e36946e232908b04b848d7c030b230bc,
     type: 3}
 --- !u!4 &1537185461
 Transform:

@@ -36,7 +36,7 @@ public class VRUserController : MonoBehaviourPunCallbacks, IPunObservable
                 transform.LookAt(lookPos);
                 transform.position = new Vector3(position.x, 0.0f, position.z);
             }
-         }
+        }
         else
         {
             animator = GetComponent<Animator>();
