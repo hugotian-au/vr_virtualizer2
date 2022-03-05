@@ -22,7 +22,8 @@ public class MySceneObjectManager : MonoBehaviourPunCallbacks
             {
                 var pv = GetComponent<PhotonView>();
                 pv.RPC("RPC_InstantiateSceneObject", RpcTarget.All,
-                    this.sceneObject1.name, new Vector3(0f, 0f, 0f), Quaternion.identity);
+                    this.sceneObject1.name, new Vector3(3f, 5f, 3f), Quaternion.identity);
+                // Instantiate(sceneObject1, new Vector3(0, 0, 0), Quaternion.identity);
             }
         }
     }
