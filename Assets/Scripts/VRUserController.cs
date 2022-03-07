@@ -8,10 +8,11 @@ public class VRUserController : MonoBehaviourPunCallbacks, IPunObservable
     #region Private Fields
     // Find the Main Camera's position
     private GameObject parent_camera;
+    private GameObject tracker;
     private Vector3 position = new Vector3(0, 0, 0);
     private Vector3 prevPosition = new Vector3(0.0f, 0.0f, 0.0f);
+    private Vector3 relativeCameraPos;
     private Animator animator;
-    // private float timeCount = 0.0f;
     #endregion
 
     #region MonoBehaviour CallBacks
@@ -27,8 +28,8 @@ public class VRUserController : MonoBehaviourPunCallbacks, IPunObservable
             parent_camera = GameObject.Find("CenterEyeAnchor");
             if (parent_camera != null)
             {
-                var position = parent_camera.transform.position;
-                var lookPos = position - transform.position;
+                var camera_position = parent_camera.transform.position;
+                var lookPos = camera_position - transform.position;
                 lookPos.y = 0;
                 // var rotation = Quaternion.LookRotation(lookPos);
                 // rotation *= Quaternion.Euler(0, 90, 0); // this adds a 90 degrees Y rotation
@@ -39,6 +40,8 @@ public class VRUserController : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
+            tracker = GameObject.Find("TrackerHandler");
+            relativeCameraPos = transform.position - tracker.transform.position;
             animator = GetComponent<Animator>();
             if (!animator)
             {
@@ -65,7 +68,6 @@ public class VRUserController : MonoBehaviourPunCallbacks, IPunObservable
             transform.position = new Vector3(camera_position.x, 0.0f, camera_position.z);
 
             position = transform.localPosition;  // Use the world position since the localPosition is not changed
-
         }
         else
         {
@@ -74,7 +76,8 @@ public class VRUserController : MonoBehaviourPunCallbacks, IPunObservable
             if (diff.x > 0.05f || diff.z > 0.05f || diff.x < -0.05f || diff.z < -0.05f)
             {
                 var new_position = new Vector3(position.x, 0, position.z);
-                transform.LookAt(new_position);
+                var lookat_pos = new Vector3(position.x, tracker.transform.position.y, position.z);
+                transform.LookAt(lookat_pos);
                 transform.localPosition = new_position;
                 // animator.SetFloat("VerticalMov", 0.2f);
                 animator.SetFloat("Speed", 0.3f);
@@ -82,6 +85,10 @@ public class VRUserController : MonoBehaviourPunCallbacks, IPunObservable
             }
             else
             {
+                var new_position = new Vector3(position.x, 0, position.z);
+                var lookat_pos = new Vector3(position.x, tracker.transform.position.y, position.z);
+                transform.LookAt(lookat_pos);
+                transform.localPosition = new_position;
                 animator.SetFloat("Speed", 0.0f);
             }
             // anim.SetFloat("HorizontalMov", Input.GetAxis("Horizontal"));

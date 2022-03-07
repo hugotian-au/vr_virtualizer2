@@ -2,3 +2,8 @@ AKPlugin Thread 0: starting grab thread: 0
 AKPlugin Thread 0: camera config color format: 3
 AKPlugin Thread 0: camera config color resolution: 2
 AKPlugin Thread 0: camera config depth mode: 2
+cleaning up!
+joining thread: 0 with joinablility: 1
+AKPlugin Thread 0: completed grab thread: 0
+completed joining thread: 0
+Completed Closing Camera threads
