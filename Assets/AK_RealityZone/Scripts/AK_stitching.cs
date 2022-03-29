@@ -285,25 +285,25 @@ public class AK_stitching : MonoBehaviour {
         //camInfoBuffer = new ComputeBuffer(camInfoList.Count, 328);  //3 matrices and 19 floats: 3*64 + 34*4 = 328
         camInfoBuffer = new ComputeBuffer(camInfoList.Count, (328 + 4*sizeof(int)));  //3 matrices and 19 floats: 3*64 + 34*4 = 328
 
-        depth_tex_cube = new RenderTexture(camInfoList[0].depth_width, camInfoList[0].depth_height, 24, RenderTextureFormat.RFloat);
+        depth_tex_cube = new RenderTexture(camInfoList[0].depth_width, camInfoList[0].depth_height, 0, RenderTextureFormat.RFloat);
         depth_tex_cube.dimension = UnityEngine.Rendering.TextureDimension.Tex3D;
         depth_tex_cube.volumeDepth = camInfoList.Count;
         depth_tex_cube.enableRandomWrite = true;
         depth_tex_cube.Create();
 
-        distortion_tex_cube = new RenderTexture(camInfoList[0].depth_width, camInfoList[0].depth_height, 24, RenderTextureFormat.RGFloat);
+        distortion_tex_cube = new RenderTexture(camInfoList[0].depth_width, camInfoList[0].depth_height, 0, RenderTextureFormat.RGFloat);
         distortion_tex_cube.dimension = UnityEngine.Rendering.TextureDimension.Tex3D;
         distortion_tex_cube.volumeDepth = camInfoList.Count;
         distortion_tex_cube.enableRandomWrite = true;
         distortion_tex_cube.Create();
 
-        color_tex_cube = new RenderTexture(camInfoList[0].color_width, camInfoList[0].color_height, 24);
+        color_tex_cube = new RenderTexture(camInfoList[0].color_width, camInfoList[0].color_height, 0);
         color_tex_cube.dimension = UnityEngine.Rendering.TextureDimension.Tex3D;
         color_tex_cube.volumeDepth = camInfoList.Count;
         color_tex_cube.enableRandomWrite = true;
         color_tex_cube.Create();
 
-        normal_tex_cube = new RenderTexture(camInfoList[0].depth_width, camInfoList[0].depth_height, 24, RenderTextureFormat.ARGBFloat);
+        normal_tex_cube = new RenderTexture(camInfoList[0].depth_width, camInfoList[0].depth_height, 0, RenderTextureFormat.ARGBFloat);
         normal_tex_cube.dimension = UnityEngine.Rendering.TextureDimension.Tex3D;
         normal_tex_cube.volumeDepth = camInfoList.Count;
         normal_tex_cube.enableRandomWrite = true;
@@ -612,7 +612,8 @@ public class AK_stitching : MonoBehaviour {
         //clear out voxel buffer so it's all zeros
         int voxelClearKH = voxelCompute.FindKernel("CSVoxelClear");
         voxelCompute.SetBuffer(voxelClearKH, "VoxelsClear", voxelBuffer);
-        voxelCompute.Dispatch(voxelClearKH, numVoxels * numVoxels * numVoxels / 64, 1, 1);
+        // int thread_count = numVoxels * numVoxels * numVoxels;
+        voxelCompute.Dispatch(voxelClearKH, numVoxels / 64, numVoxels, numVoxels);
         
 
         /*

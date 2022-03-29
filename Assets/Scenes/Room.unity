@@ -2365,7 +2365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1055434985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2379,7 +2379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cubeWidth: 10
-  numVoxels: 350
+  numVoxels: 512
   maskArray: 010101
   normalFilterSize: 3
   flying_pixel_tolerance: 0.1
