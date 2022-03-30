@@ -1,1 +1,1 @@
-[{"serial":676294612,"position_x":-0.0673306584358215,"position_y":0.0766296982765198,"position_z":-0.0298329815268517,"quaternion_x":0.549807131290436,"quaternion_y":0,"quaternion_z":0.514094769954681,"quaternion_w":0.658345460891724}]
+[{"serial":676294612,"position_x":-0.0555901937186718,"position_y":-0.0798658579587936,"position_z":-0.0623614825308323,"quaternion_x":-0.548355281352997,"quaternion_y":0,"quaternion_z":-0.534793376922607,"quaternion_w":0.642886102199554}]
