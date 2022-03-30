@@ -612,7 +612,6 @@ public class AK_stitching : MonoBehaviour {
         //clear out voxel buffer so it's all zeros
         int voxelClearKH = voxelCompute.FindKernel("CSVoxelClear");
         voxelCompute.SetBuffer(voxelClearKH, "VoxelsClear", voxelBuffer);
-        // int thread_count = numVoxels * numVoxels * numVoxels;
         voxelCompute.Dispatch(voxelClearKH, numVoxels / 64, numVoxels, numVoxels);
         
 

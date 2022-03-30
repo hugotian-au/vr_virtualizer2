@@ -1233,7 +1233,7 @@ public class akplay : MonoBehaviour {
     void Update () {
         //Debug.Log("************* setting cameras ready to true");
         camerasReady = true;
-        return;
+
         if (System.DateTime.Now.Day != lastDay)
         {
             lastDay = System.DateTime.Now.Day;
