@@ -429,6 +429,7 @@ public class akplay : MonoBehaviour {
 
     public List<camInfo> camInfoList = new List<camInfo>();
     int numCameras = 0;
+    private GameObject akContent;
 
 
 
@@ -669,6 +670,7 @@ public class akplay : MonoBehaviour {
                 {
                     vizArrayTemp[i] = GameObject.Instantiate(visualizationPrefab);
                     vizArrayTemp[i].name = "Visualization_" + i;
+                    vizArrayTemp[i].transform.parent = akContent.transform;
 
 
                     skelVisArrayTemp[i] = new Dictionary<uint, SkeletonVis>();
@@ -696,6 +698,8 @@ public class akplay : MonoBehaviour {
 
         filePath = Application.dataPath + "/AKPlugin_result.txt";
         System.IO.File.WriteAllText(filePath, "");
+
+        akContent = GameObject.Find("ak_content");
 
         if (verbose)
         {
