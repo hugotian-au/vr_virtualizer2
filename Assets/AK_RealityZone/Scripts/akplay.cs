@@ -1044,7 +1044,15 @@ public class akplay : MonoBehaviour {
                 superDebug("depth_translation " + i + ": " + dumpArray(depth_translation));
                 superDebug("depth_intrinsics " + i + ": " + dumpArray(depth_intrinsics));
             }
-
+            print("******************************************************");
+            print("serial number: " + camInfoList[i].serial);
+            print("color_rotation " + i + ": " + dumpArray(color_rotation));
+            print("color_translation " + i + ": " + dumpArray(color_translation));
+            print("color_intrinsics " + i + ": " + dumpArray(color_intrinsics));
+            print("depth_rotation " + i + ": " + dumpArray(depth_rotation));
+            print("depth_translation " + i + ": " + dumpArray(depth_translation));
+            print("depth_intrinsics " + i + ": " + dumpArray(depth_intrinsics));
+            print("******************************************************");
 
             camInfoList[i].visualization.GetComponent<AK_visualization>().cameraInfo.color_cx = color_intrinsics[0];
             camInfoList[i].visualization.GetComponent<AK_visualization>().cameraInfo.color_cy = color_intrinsics[1];

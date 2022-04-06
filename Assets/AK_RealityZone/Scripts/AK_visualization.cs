@@ -150,6 +150,10 @@ public class AK_visualization : MonoBehaviour {
         else if (cameraInfo.serial == 457594512)
         {
             // The serial number of the camera in the corner above desk
+            Vector3 registeredPosition = new Vector3(-1.592f, 2.627f, 1.302f);
+            Quaternion registeredRotatoin = Quaternion.Euler(152.862f, -34.20898f, 5.875992f);
+            transform.localPosition = registeredPosition;
+            transform.localRotation = registeredRotatoin;
         }
         else if (cameraInfo.serial == 676294612)
         {
