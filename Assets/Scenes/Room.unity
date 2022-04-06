@@ -3006,7 +3006,7 @@ MonoBehaviour:
   camerasReady: 0
   broadcastSkeletonData: 1
   primaryTrackerIndex: 1
-  color_resolution: 4
+  color_resolution: 1
   depth_mode: 4
   fps_mode: 1
   jpgTex: {fileID: 0}

@@ -333,7 +333,7 @@ public class akplay : MonoBehaviour {
     const int MAX_SKELETONS = 32; // should be impossible
     const uint MAX_BODY_IDS = 256; // Complete guess
 
-    public k4a_color_resolution_t color_resolution = k4a_color_resolution_t.K4A_COLOR_RESOLUTION_1536P;
+    public k4a_color_resolution_t color_resolution = k4a_color_resolution_t.K4A_COLOR_RESOLUTION_1080P;
     public k4a_depth_mode_t depth_mode = k4a_depth_mode_t.K4A_DEPTH_MODE_NFOV_UNBINNED;
     public k4a_fps_t fps_mode = k4a_fps_t.K4A_FRAMES_PER_SECOND_15;
 
@@ -1020,6 +1020,7 @@ public class akplay : MonoBehaviour {
             getCalibration(i,
                 (int)color_resolution,
                 (int)k4a_depth_mode_t.K4A_DEPTH_MODE_NFOV_UNBINNED,
+                //(int)k4a_depth_mode_t.K4A_DEPTH_MODE_WFOV_UNBINNED,
                 color_rotation_h.AddrOfPinnedObject(),
                 color_translation_h.AddrOfPinnedObject(),
                 color_intrinsics_h.AddrOfPinnedObject(),
