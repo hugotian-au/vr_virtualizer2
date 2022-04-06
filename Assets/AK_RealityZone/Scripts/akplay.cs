@@ -1072,7 +1072,8 @@ public class akplay : MonoBehaviour {
 
             colorExtrinsics.SetColumn(3, new Vector4(color_translation[0] / 1000.0f, color_translation[1] / 1000.0f, color_translation[2] / 1000.0f, 1.0f));
 
-            
+
+            camInfoList[i].visualization.GetComponent<AK_visualization>().cameraInfo.serial = camInfoList[i].serial;
 
             camInfoList[i].visualization.GetComponent<AK_visualization>().cameraInfo.color_extrinsics = colorExtrinsics;
 

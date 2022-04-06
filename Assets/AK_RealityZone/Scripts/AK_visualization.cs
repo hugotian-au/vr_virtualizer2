@@ -29,6 +29,8 @@ public class AK_visualization : MonoBehaviour {
 
     public struct cameraInfoStruct
     {
+        public int serial;
+
         public Matrix4x4 color_extrinsics;
 
         public float color_cx;
@@ -136,6 +138,22 @@ public class AK_visualization : MonoBehaviour {
             mat.SetFloat("_color_p1", cameraInfo.color_p1);
             mat.SetFloat("_color_p2", cameraInfo.color_p2);
             mat.SetFloat("_color_metric_radius", cameraInfo.color_metric_radius);
+        }
+        if (cameraInfo.serial == 668194612)  
+        {
+            // The serial number of the camera in the corner above the door
+            Vector3 registeredPosition = new Vector3(1.677976f, 2.498745f, 1.319135f);
+            Quaternion registeredRotatoin = Quaternion.Euler(151.641f, 30.689f, 0.9599919f);
+            transform.localPosition = registeredPosition;
+            transform.localRotation = registeredRotatoin;
+        }
+        else if (cameraInfo.serial == 457594512)
+        {
+            // The serial number of the camera in the corner above desk
+        }
+        else if (cameraInfo.serial == 676294612)
+        {
+            // The serial number of the camera in the corner above the bookshelf
         }
     }
 

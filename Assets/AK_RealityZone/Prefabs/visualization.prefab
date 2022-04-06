@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4733941439543718}
   - component: {fileID: 114230662998695352}
-  - component: {fileID: 646821213222011763}
   m_Layer: 0
   m_Name: visualization
   m_TagString: Untagged
@@ -52,20 +51,6 @@ MonoBehaviour:
   size: 0.12
   enhanced_depth_sampling: 0
   multiplier: 1
---- !u!114 &646821213222011763
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780632497081576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f543dc4b779c17e4eb16cbd344d41b5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  registeredPosition: {x: 1.677976, y: 2.498745, z: 1.319135}
-  registeredRotatoin: {x: 0.93548155, y: 0.056987047, z: -0.2545719, w: 0.23836918}
 --- !u!1 &1790784678029796
 GameObject:
   m_ObjectHideFlags: 0

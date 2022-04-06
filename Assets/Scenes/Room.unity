@@ -3011,7 +3011,7 @@ MonoBehaviour:
   fps_mode: 1
   jpgTex: {fileID: 0}
   slider: 1
-  fps: 30
+  fps: 15
 --- !u!4 &1640398111
 Transform:
   m_ObjectHideFlags: 0
