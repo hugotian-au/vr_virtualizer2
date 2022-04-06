@@ -55,8 +55,9 @@ public class AK_visualization : MonoBehaviour {
 
 
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         matDefault = new Material(AK_pointCloudShader);
         foreach (Camera cam in Camera.allCameras)
         {
@@ -64,6 +65,23 @@ public class AK_visualization : MonoBehaviour {
             matForCamera.Add(cam.GetInstanceID(), matDefault); // cam.GetInstanceID(), new Material(AK_pointCloudShader));
         }
         //mat = new Material(Shader.Find("Standard"));
+
+        if (cameraInfo.serial == 668194612)
+        {
+            // The serial number of the camera in the corner above the door
+            regPos = registeredPosition0;
+            regRotation = registeredRotation0;
+        }
+        else if (cameraInfo.serial == 457594512)
+        {
+            // The serial number of the camera in the corner above desk
+            regPos = registeredPosition1;
+            regRotation = registeredRotation1;
+        }
+        else if (cameraInfo.serial == 676294612)
+        {
+            // The serial number of the camera in the corner above the bookshelf
+        }
     }
 
     RenderTexture resized_depth_tex = null;
@@ -72,8 +90,17 @@ public class AK_visualization : MonoBehaviour {
     public float size = 0.08f;
     public bool enhanced_depth_sampling = false;
     public float multiplier = 1.0f;
-	// Update is called once per frame
-	void Update () {
+
+    public Vector3 regPos;
+    public Vector3 regRotation;
+
+    private Vector3 registeredPosition0 = new Vector3(1.677976f, 2.498745f, 1.319135f);
+    private Vector3 registeredRotation0 = new Vector3(151.641f, 30.689f, 0.9599919f);
+
+    private Vector3 registeredPosition1 = new Vector3(-1.592f, 2.627f, 1.302f);
+    private Vector3 registeredRotation1 = new Vector3(152.862f, -34.20898f, 5.875992f);
+    // Update is called once per frame
+    void Update () {
         if (enhanced_depth_sampling)
         {
             RenderTexture previous_rt = RenderTexture.active;
@@ -139,26 +166,10 @@ public class AK_visualization : MonoBehaviour {
             mat.SetFloat("_color_p2", cameraInfo.color_p2);
             mat.SetFloat("_color_metric_radius", cameraInfo.color_metric_radius);
         }
-        if (cameraInfo.serial == 668194612)  
-        {
-            // The serial number of the camera in the corner above the door
-            Vector3 registeredPosition = new Vector3(1.677976f, 2.498745f, 1.319135f);
-            Quaternion registeredRotatoin = Quaternion.Euler(151.641f, 30.689f, 0.9599919f);
-            transform.localPosition = registeredPosition;
-            transform.localRotation = registeredRotatoin;
-        }
-        else if (cameraInfo.serial == 457594512)
-        {
-            // The serial number of the camera in the corner above desk
-            Vector3 registeredPosition = new Vector3(-1.592f, 2.627f, 1.302f);
-            Quaternion registeredRotatoin = Quaternion.Euler(152.862f, -34.20898f, 5.875992f);
-            transform.localPosition = registeredPosition;
-            transform.localRotation = registeredRotatoin;
-        }
-        else if (cameraInfo.serial == 676294612)
-        {
-            // The serial number of the camera in the corner above the bookshelf
-        }
+
+            Quaternion registeredRotation = Quaternion.Euler(regRotation.x, regRotation.y, regRotation.z);
+            transform.localPosition = regPos;
+            transform.localRotation = registeredRotation;
     }
 
     void OnRenderObject()
