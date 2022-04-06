@@ -122,7 +122,7 @@ public class akplay : MonoBehaviour {
     public GameObject bonePrefab;
     public GameObject humanMarkerPrefab;
     public Shader AK_pointCloudShader;
-    public ObjectPositionSender objectPositionSender;
+    //public ObjectPositionSender objectPositionSender;
     //public MIRController mirController;
 
     public GameObject lineRendererPrefab;
@@ -1415,10 +1415,10 @@ public class akplay : MonoBehaviour {
             skeletonVisArray[i].Remove(id);
         }
 
-        if (broadcastSkeletonData)
-        {
-            SendSkeletonData();
-        }
+        //if (broadcastSkeletonData)
+        //{
+        //    SendSkeletonData();
+        //}
     }
 
     private const float COALESCE_RANGE = 0.75f * 0.75f;
@@ -1694,58 +1694,6 @@ public class akplay : MonoBehaviour {
             lr.gameObject.SetActive(showTrackedLines);
         }
         // mirController.SetActive(showTrackedLines);
-    }
-
-    private void SendSkeletonData()
-    {
-        if (!objectPositionSender || primaryTrackerIndex >= skeletonVisArray.Length)
-        {
-            return;
-        }
-
-        Dictionary<uint, SkeletonVis> skelVisses = skeletonVisArray[primaryTrackerIndex];
-        JSONArray skeletons = new JSONArray();
-        foreach (var entry in skelVisses)
-        {
-            uint id = entry.Key;
-            SkeletonVis sv = entry.Value;
-            JSONObject skeleton = new JSONObject();
-            skeleton.Add("id", id);
-            JSONArray joints = new JSONArray();
-            foreach (var jointGO in sv.joints)
-            {
-                JSONObject joint = new JSONObject();
-                joint.Add("x", jointGO.transform.position.x);
-                joint.Add("y", jointGO.transform.position.y);
-                joint.Add("z", jointGO.transform.position.z);
-                joints.Add(joint);
-            }
-            skeleton.Add("joints", joints);
-            skeletons.Add(skeleton);
-        }
-        /*
-        if (mirController.Connected())
-        {
-            JSONObject skeleton = new JSONObject();
-            skeleton.Add("id", "mir");
-            JSONArray joints = new JSONArray();
-
-            JSONObject joint = new JSONObject();
-            joint.Add("x", mirController.currentPos.x);
-            joint.Add("y", mirController.currentPos.y);
-            joint.Add("z", mirController.currentPos.z);
-            joint.Add("qw", mirController.currentOri.w);
-            joint.Add("qx", mirController.currentOri.x);
-            joint.Add("qy", mirController.currentOri.y);
-            joint.Add("qz", mirController.currentOri.z);
-            joints.Add(joint);
-
-            skeleton.Add("joints", joints);
-            skeletons.Add(skeleton);
-        }
-        */
-
-        objectPositionSender.SendSkeleton(skeletons);
     }
 
     private void OnApplicationQuit()
