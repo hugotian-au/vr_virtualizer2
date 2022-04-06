@@ -123,7 +123,7 @@ public class akplay : MonoBehaviour {
     public GameObject humanMarkerPrefab;
     public Shader AK_pointCloudShader;
     public ObjectPositionSender objectPositionSender;
-    public MIRController mirController;
+    //public MIRController mirController;
 
     public GameObject lineRendererPrefab;
     private Dictionary<uint, LineRenderer> lineRenderers = new Dictionary<uint, LineRenderer>();
@@ -1636,7 +1636,7 @@ public class akplay : MonoBehaviour {
         GameObject.Destroy(defunctLine.gameObject);
         }
         defunctLineRenderers.Clear();
-        mirController.Clear();
+        // mirController.Clear();
     }
 
     public void ToggleVisualizations()
@@ -1693,7 +1693,7 @@ public class akplay : MonoBehaviour {
         {
             lr.gameObject.SetActive(showTrackedLines);
         }
-        mirController.SetActive(showTrackedLines);
+        // mirController.SetActive(showTrackedLines);
     }
 
     private void SendSkeletonData()
@@ -1723,7 +1723,7 @@ public class akplay : MonoBehaviour {
             skeleton.Add("joints", joints);
             skeletons.Add(skeleton);
         }
-
+        /*
         if (mirController.Connected())
         {
             JSONObject skeleton = new JSONObject();
@@ -1743,6 +1743,7 @@ public class akplay : MonoBehaviour {
             skeleton.Add("joints", joints);
             skeletons.Add(skeleton);
         }
+        */
 
         objectPositionSender.SendSkeleton(skeletons);
     }

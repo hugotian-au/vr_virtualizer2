@@ -170,7 +170,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &56543025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3592,14 +3592,13 @@ MonoBehaviour:
     type: 3}
   AK_pointCloudShader: {fileID: 4800000, guid: 7116e3d659d91fe45b4946933e9f5658, type: 3}
   objectPositionSender: {fileID: 1308983894}
-  mirController: {fileID: 56543028}
   lineRendererPrefab: {fileID: 1901491786921336, guid: b6193354009069b40bd8f220711506c6,
     type: 3}
   camerasReady: 0
   broadcastSkeletonData: 1
   primaryTrackerIndex: 1
-  color_resolution: 2
-  depth_mode: 2
+  color_resolution: 4
+  depth_mode: 4
   fps_mode: 1
   jpgTex: {fileID: 0}
   slider: 1
