@@ -53,7 +53,14 @@ public class AK_visualization : MonoBehaviour {
 
     public cameraInfoStruct cameraInfo;
 
+    private Vector3 registeredPosition0 = new Vector3(1.677976f, 2.498745f, 1.319135f);
+    private Vector3 registeredRotation0 = new Vector3(151.641f, 30.689f, 0.9599919f);
 
+    private Vector3 registeredPosition1 = new Vector3(-1.592f, 2.627f, 1.302f);
+    private Vector3 registeredRotation1 = new Vector3(152.862f, -34.20898f, 5.875992f);
+
+    private Vector3 registeredPosition2 = new Vector3(-0.003f, 2.65f, -1.434f);
+    private Vector3 registeredRotation2 = new Vector3(32.3f, 368.488f, -170.137f);
 
     // Use this for initialization
     void Start()
@@ -81,6 +88,8 @@ public class AK_visualization : MonoBehaviour {
         else if (cameraInfo.serial == 676294612)
         {
             // The serial number of the camera in the corner above the bookshelf
+            regPos = registeredPosition2;
+            regRotation = registeredRotation2;
         }
     }
 
@@ -94,11 +103,6 @@ public class AK_visualization : MonoBehaviour {
     public Vector3 regPos;
     public Vector3 regRotation;
 
-    private Vector3 registeredPosition0 = new Vector3(1.677976f, 2.498745f, 1.319135f);
-    private Vector3 registeredRotation0 = new Vector3(151.641f, 30.689f, 0.9599919f);
-
-    private Vector3 registeredPosition1 = new Vector3(-1.592f, 2.627f, 1.302f);
-    private Vector3 registeredRotation1 = new Vector3(152.862f, -34.20898f, 5.875992f);
     // Update is called once per frame
     void Update () {
         if (enhanced_depth_sampling)
@@ -167,9 +171,9 @@ public class AK_visualization : MonoBehaviour {
             mat.SetFloat("_color_metric_radius", cameraInfo.color_metric_radius);
         }
 
-            Quaternion registeredRotation = Quaternion.Euler(regRotation.x, regRotation.y, regRotation.z);
-            transform.localPosition = regPos;
-            transform.localRotation = registeredRotation;
+        Quaternion registeredRotation = Quaternion.Euler(regRotation.x, regRotation.y, regRotation.z);
+        transform.localPosition = regPos;
+        transform.localRotation = registeredRotation;
     }
 
     void OnRenderObject()
