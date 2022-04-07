@@ -429,9 +429,9 @@ public class akplay : MonoBehaviour {
 
     public List<camInfo> camInfoList = new List<camInfo>();
     int numCameras = 0;
-    private GameObject akContent;
-
-
+    private GameObject akContent0;
+    private GameObject akContent1;
+    private GameObject akContent2;
 
     // Use this for debug callback
     void OnEnable()
@@ -670,8 +670,18 @@ public class akplay : MonoBehaviour {
                 {
                     vizArrayTemp[i] = GameObject.Instantiate(visualizationPrefab);
                     vizArrayTemp[i].name = "Visualization_" + i;
-                    vizArrayTemp[i].transform.parent = akContent.transform;
-
+                    if (i == 0)
+                    {
+                        vizArrayTemp[i].transform.parent = akContent0.transform;
+                    }
+                    else if (i == 1)
+                    {
+                        vizArrayTemp[i].transform.parent = akContent1.transform;
+                    }
+                    else
+                    {
+                        vizArrayTemp[i].transform.parent = akContent2.transform;
+                    }
 
                     skelVisArrayTemp[i] = new Dictionary<uint, SkeletonVis>();
                 }
@@ -699,7 +709,10 @@ public class akplay : MonoBehaviour {
         filePath = Application.dataPath + "/AKPlugin_result.txt";
         System.IO.File.WriteAllText(filePath, "");
 
-        akContent = GameObject.Find("ak_content");
+        akContent0 = GameObject.Find("ak_content_0");
+        akContent1 = GameObject.Find("ak_content_1");
+        akContent2 = GameObject.Find("ak_content_2");
+
 
         if (verbose)
         {
