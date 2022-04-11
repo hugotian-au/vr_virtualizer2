@@ -1034,7 +1034,7 @@ public class akplay : MonoBehaviour {
 
 
 
-            getCalibration(i,
+            getCalibration(0,
                 (int)color_resolution,
                 (int)k4a_depth_mode_t.K4A_DEPTH_MODE_NFOV_UNBINNED,
                 //(int)k4a_depth_mode_t.K4A_DEPTH_MODE_WFOV_UNBINNED,

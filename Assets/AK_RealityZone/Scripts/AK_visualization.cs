@@ -56,11 +56,11 @@ public class AK_visualization : MonoBehaviour {
     private Vector3 registeredPosition0 = new Vector3(1.677976f, 2.498745f, 1.319135f);
     private Vector3 registeredRotation0 = new Vector3(151.641f, 30.689f, 0.9599919f);
 
-    private Vector3 registeredPosition1 = new Vector3(-1.592f, 2.627f, 1.302f);
-    private Vector3 registeredRotation1 = new Vector3(152.862f, -34.20898f, 5.875992f);
+    private Vector3 registeredPosition1 = new Vector3(-1.683f, 2.552f, 1.2475f);
+    private Vector3 registeredRotation1 = new Vector3(23.334f, -220.318f, -171.482f);
 
-    private Vector3 registeredPosition2 = new Vector3(-0.003f, 2.65f, -1.434f);
-    private Vector3 registeredRotation2 = new Vector3(32.3f, 368.488f, -170.137f);
+    private Vector3 registeredPosition2 = new Vector3(0.017f, 2.7f, -0.96f);
+    private Vector3 registeredRotation2 = new Vector3(36.0453f, 358.16f, 189.244f);
 
     // Use this for initialization
     void Start()
