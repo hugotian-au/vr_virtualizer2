@@ -53,14 +53,14 @@ public class AK_visualization : MonoBehaviour {
 
     public cameraInfoStruct cameraInfo;
 
-    private Vector3 registeredPosition0 = new Vector3(1.7f, 2.69f, 1.20f);
-    private Vector3 registeredRotation0 = new Vector3(149f, 32.5f, 0.56f);
+    private Vector3 registeredPosition0 = new Vector3(1.694f, 2.74f, 1.182f);
+    private Vector3 registeredRotation0 = new Vector3(150.141f, 33.185f, 2.127991f);
 
-    private Vector3 registeredPosition1 = new Vector3(-1.6495f, 2.595078f, 1.244509f);
-    private Vector3 registeredRotation1 = new Vector3(153.0f, -52.6f, 0.6f);
+    private Vector3 registeredPosition1 = new Vector3(-1.59f, 2.749f, 1.265f);
+    private Vector3 registeredRotation1 = new Vector3(153.273f, -51.79599f, 1.057999f);
 
-    private Vector3 registeredPosition2 = new Vector3(1.57f, 2.68f, -0.93f);
-    private Vector3 registeredRotation2 = new Vector3(31f, -36f, -178f);
+    private Vector3 registeredPosition2 = new Vector3(1.581f, 2.80f, -0.909f);
+    private Vector3 registeredRotation2 = new Vector3(31.018f, -36.874f, -178.234f);
 
     // Use this for initialization
     void Start()
