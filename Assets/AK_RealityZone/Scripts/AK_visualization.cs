@@ -53,14 +53,14 @@ public class AK_visualization : MonoBehaviour {
 
     public cameraInfoStruct cameraInfo;
 
-    private Vector3 registeredPosition0 = new Vector3(1.677976f, 2.498745f, 1.319135f);
-    private Vector3 registeredRotation0 = new Vector3(151.641f, 30.689f, 0.9599919f);
+    private Vector3 registeredPosition0 = new Vector3(1.7f, 2.69f, 1.20f);
+    private Vector3 registeredRotation0 = new Vector3(149f, 32.5f, 0.56f);
 
-    private Vector3 registeredPosition1 = new Vector3(-1.683f, 2.552f, 1.2475f);
-    private Vector3 registeredRotation1 = new Vector3(23.334f, -220.318f, -171.482f);
+    private Vector3 registeredPosition1 = new Vector3(-1.6495f, 2.595078f, 1.244509f);
+    private Vector3 registeredRotation1 = new Vector3(153.0f, -52.6f, 0.6f);
 
-    private Vector3 registeredPosition2 = new Vector3(0.017f, 2.7f, -0.96f);
-    private Vector3 registeredRotation2 = new Vector3(36.0453f, 358.16f, 189.244f);
+    private Vector3 registeredPosition2 = new Vector3(1.57f, 2.68f, -0.93f);
+    private Vector3 registeredRotation2 = new Vector3(31f, -36f, -178f);
 
     // Use this for initialization
     void Start()
@@ -91,6 +91,9 @@ public class AK_visualization : MonoBehaviour {
             regPos = registeredPosition2;
             regRotation = registeredRotation2;
         }
+        Quaternion registeredRotation = Quaternion.Euler(regRotation.x, regRotation.y, regRotation.z);
+        transform.localPosition = regPos;
+        transform.localRotation = registeredRotation;
     }
 
     RenderTexture resized_depth_tex = null;
@@ -102,6 +105,7 @@ public class AK_visualization : MonoBehaviour {
 
     public Vector3 regPos;
     public Vector3 regRotation;
+    public bool enable_manual_adjust = false;
 
     // Update is called once per frame
     void Update () {
@@ -171,9 +175,12 @@ public class AK_visualization : MonoBehaviour {
             mat.SetFloat("_color_metric_radius", cameraInfo.color_metric_radius);
         }
 
-        Quaternion registeredRotation = Quaternion.Euler(regRotation.x, regRotation.y, regRotation.z);
-        transform.localPosition = regPos;
-        transform.localRotation = registeredRotation;
+        if (!enable_manual_adjust)
+        {
+            Quaternion registeredRotation = Quaternion.Euler(regRotation.x, regRotation.y, regRotation.z);
+            transform.localPosition = regPos;
+            transform.localRotation = registeredRotation;
+        }
     }
 
     void OnRenderObject()
