@@ -5361,6 +5361,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: block5
       objectReference: {fileID: 0}
+    - target: {fileID: 652060320557691155, guid: bcde47f75b6f98445bbe206de9ca33f3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcde47f75b6f98445bbe206de9ca33f3, type: 3}
 --- !u!1001 &1645700077899705493
@@ -5429,6 +5434,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: block7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880211413605541910, guid: 691ffe7095c60424daaa2e3cc5141572,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2419695597151680387, guid: 691ffe7095c60424daaa2e3cc5141572,
         type: 3}
@@ -5504,6 +5514,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: block4
       objectReference: {fileID: 0}
+    - target: {fileID: 4291610873147383631, guid: 8d4d618271ae4eb47a1022131bdaee9a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5345565035656595186, guid: 8d4d618271ae4eb47a1022131bdaee9a,
         type: 3}
       propertyPath: sceneViewId
@@ -5577,6 +5592,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: block6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5728610683853351032, guid: 3eb681e5ccce58543b23f10ee5e13e27,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7290050313983559156, guid: 3eb681e5ccce58543b23f10ee5e13e27,
         type: 3}
@@ -5657,6 +5677,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: block3
       objectReference: {fileID: 0}
+    - target: {fileID: 5712257937470382581, guid: 2095fbd191eee5c48b62a456bda1931a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2095fbd191eee5c48b62a456bda1931a, type: 3}
 --- !u!1001 &5219354235435901828
@@ -5675,6 +5700,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: block2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4949375554216925386, guid: 085cf3268d766ed489b19bd0f43309db,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5756838903825449584, guid: 085cf3268d766ed489b19bd0f43309db,
         type: 3}
@@ -5805,5 +5835,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: block1
       objectReference: {fileID: 0}
+    - target: {fileID: 7816937879699956924, guid: 2a55d18dc0329a24b9dc7ebdbb6bf944,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a55d18dc0329a24b9dc7ebdbb6bf944, type: 3}
+--- !u!1 &6969951835543337087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7816937879699956924, guid: 2a55d18dc0329a24b9dc7ebdbb6bf944,
+    type: 3}
+  m_PrefabInstance: {fileID: 6969951835543337086}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6969951835543337088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6969951835543337087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9616aa6f8ab218845bcbdf401a4b1551, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockPosition1: {x: 0.549, y: 1.3, z: -1.345}
+  blockRotatoin1: {x: -0.034594078, y: 0.7458157, z: 0.664857, w: 0.022964522}
+  blockPosition2: {x: 0.897, y: 1.298, z: -1.365}
+  blockRotatoin2: {x: 0.011409027, y: -0.7070148, z: -0.7070147, w: -0.011409025}
+  blockPosition3: {x: 1.222, y: 1.283, z: -1.342}
+  blockRotatoin3: {x: 0, y: -0.69356525, z: 0, w: 0.7203938}
+  blockPosition4: {x: 0.746, y: 1.653, z: -1.199}
+  blockRotatoin4: {x: 0, y: 0.72953, z: 0, w: 0.6839489}
+  blockPosition5: {x: 0.94, y: 1.64, z: -1.191}
+  blockRotatoin5: {x: 0, y: 0, z: -0.7311871, w: 0.682177}
+  blockPosition6: {x: 1.231, y: 1.636, z: -1.221}
+  blockRotatoin6: {x: 0, y: 0.72123456, z: 0, w: 0.6926909}
+  blockPosition7: {x: 0.615, y: 0.964, z: -1.183}
+  blockRotatoin7: {x: 0.7053263, y: -0.019262621, z: 0.7084099, w: 0.017296528}
