@@ -76,7 +76,7 @@ namespace DilmerGames
             goLineRenderer.SetPosition(0, objectToTrackMovement.transform.position);
 
             // send position
-            // TCPControllerClient.Instance.AddNewLine(objectToTrackMovement.transform.position);
+            TCPControllerClient.Instance.AddNewLine(objectToTrackMovement.transform.position);
 
             currentLineRender = goLineRenderer;
             lines.Add(goLineRenderer);
@@ -165,7 +165,7 @@ namespace DilmerGames
             currentLineRender.SetPosition(positionCount, position);
             
             // send position
-            // TCPControllerClient.Instance.UpdateLine(position);
+            TCPControllerClient.Instance.UpdateLine(position);
         }
 
         public void UpdateLineWidth(float newValue)
