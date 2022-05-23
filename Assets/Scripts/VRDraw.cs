@@ -86,33 +86,33 @@ namespace DilmerGames
         {
             if(!vrControllerOptions.IsScreenHidden) return;
 
-    #if !UNITY_EDITOR
+    //#if !UNITY_EDITOR
             // primary left controller
             if(controlHand == ControlHand.Left && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
             {
-                VRStats.Instance.firstText.text = $"Axis1D.PrimaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)}";
+                //VRStats.Instance.firstText.text = $"Axis1D.PrimaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)}";
                 UpdateLine();
             }
             else if(controlHand == ControlHand.Left && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
             {
-                VRStats.Instance.secondText.text = $"Button.PrimaryIndexTrigger: {Time.deltaTime}";
+                //VRStats.Instance.secondText.text = $"Button.PrimaryIndexTrigger: {Time.deltaTime}";
                 AddNewLineRenderer();
             }
 
             // secondary right controller
             if(controlHand == ControlHand.Right && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > minDrawingPressure)
             {
-                VRStats.Instance.firstText.text = $"Axis1D.SecondaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger)}";
+                //VRStats.Instance.firstText.text = $"Axis1D.SecondaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger)}";
                 UpdateLine();
             }
             else if(controlHand == ControlHand.Right && OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
             {
-                VRStats.Instance.secondText.text = $"Button.SecondaryIndexTrigger: {Time.deltaTime}";
+                //VRStats.Instance.secondText.text = $"Button.SecondaryIndexTrigger: {Time.deltaTime}";
                 AddNewLineRenderer();
             }
 
-    #endif
-
+    //#endif
+/*
     #if UNITY_EDITOR
             if(!allowEditorControls) return;
 
@@ -140,6 +140,7 @@ namespace DilmerGames
                 AddNewLineRenderer();
             }
     #endif
+*/
         }
 
         void UpdateLine()
