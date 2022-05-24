@@ -14,6 +14,9 @@ public class MyOvrGrabbable : OVRGrabbable
         var pv = GetComponent<PhotonView>();
         pv.RequestOwnership();
 
+        var rb = GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+
         base.GrabBegin(hand, grabPoint); //pass attributes down to Super
     }
 
