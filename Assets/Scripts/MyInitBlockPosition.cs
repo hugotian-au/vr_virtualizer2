@@ -25,6 +25,8 @@ public class MyInitBlockPosition : MonoBehaviour
 
     public Vector3 blockPosition7 = new Vector3(0.615f, 0.964f, -1.183f);
     public Quaternion blockRotatoin7 = Quaternion.Euler(2.963f, 89.75401f, 180.153f);
+
+    private bool updated = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,45 @@ public class MyInitBlockPosition : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!updated)
+        {
+            if (gameObject.name == "block1(Clone)")
+            {
+                transform.localPosition = blockPosition1;
+                transform.localRotation = blockRotatoin1;
+            }
+            else if (gameObject.name == "block2(Clone)")
+            {
+                transform.localPosition = blockPosition2;
+                transform.localRotation = blockRotatoin2;
+            }
+            else if (gameObject.name == "block3(Clone)")
+            {
+                transform.localPosition = blockPosition3;
+                transform.localRotation = blockRotatoin3;
+            }
+            else if (gameObject.name == "block4(Clone)")
+            {
+                transform.localPosition = blockPosition4;
+                transform.localRotation = blockRotatoin4;
+            }
+            else if (gameObject.name == "block5(Clone)")
+            {
+                transform.localPosition = blockPosition5;
+                transform.localRotation = blockRotatoin5;
+            }
+            else if (gameObject.name == "block6(Clone)")
+            {
+                transform.localPosition = blockPosition6;
+                transform.localRotation = blockRotatoin6;
+            }
+            else if (gameObject.name == "block7(Clone)")
+            {
+                transform.localPosition = blockPosition7;
+                transform.localRotation = blockRotatoin7;
+            }
+
+            updated = true;
+        }
     }
 }
