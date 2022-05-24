@@ -5,10 +5,10 @@ using Photon.Pun;
 
 public class MyInitBlockPosition : MonoBehaviour
 {
-    public Vector3 blockPosition1 = new Vector3(0.549f, 1.3f, -1.345f);
+    public Vector3 blockPosition1 = new Vector3(0.549f, 1.4f, -1.365f);
     public Quaternion blockRotatoin1 = Quaternion.Euler(-83.369f, 185.838f, -10.511f);
 
-    public Vector3 blockPosition2 = new Vector3(0.897f, 1.298f, -1.365f);
+    public Vector3 blockPosition2 = new Vector3(0.897f, 1.3f, -1.365f);
     public Quaternion blockRotatoin2 = Quaternion.Euler(-90.00001f, 0f, -181.849f);
     
     public Vector3 blockPosition3 = new Vector3(1.222f, 1.283f, -1.342f);

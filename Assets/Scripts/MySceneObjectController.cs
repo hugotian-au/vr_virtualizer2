@@ -9,6 +9,7 @@ public class MySceneObjectController : MonoBehaviourPunCallbacks, IPunObservable
     private Vector3 position;
     private Quaternion rotation;
     private Rigidbody rb;
+    private bool IsKinematicSet = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,15 @@ public class MySceneObjectController : MonoBehaviourPunCallbacks, IPunObservable
             rotation = rb.rotation;
             // transform.parent.position = transform.position - transform.localPosition;
             // transform.parent.rotation = transform.rotation - transform.localRotation;
+            if (!IsKinematicSet)
+            {
+                var rb = GetComponent<Rigidbody>();
+                rb.isKinematic = false;
+                rb.detectCollisions = true;
+                rb.WakeUp();
+
+                IsKinematicSet = true;
+            }
         }
         else
         {
