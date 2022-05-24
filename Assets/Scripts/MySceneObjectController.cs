@@ -25,6 +25,8 @@ public class MySceneObjectController : MonoBehaviourPunCallbacks, IPunObservable
         {
             position = rb.position;
             rotation = rb.rotation;
+            // transform.parent.position = transform.position - transform.localPosition;
+            // transform.parent.rotation = transform.rotation - transform.localRotation;
         }
         else
         {

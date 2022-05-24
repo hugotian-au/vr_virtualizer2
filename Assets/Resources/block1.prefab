@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 1612882216974623807}
   - component: {fileID: 1612882216974623805}
   m_Layer: 0
-  m_Name: default
+  m_Name: block1_object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -190,8 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7435591665626119686}
-  - component: {fileID: -1698607849527241672}
-  - component: {fileID: -7687532589868057803}
+  - component: {fileID: 8321738502206531053}
   m_Layer: 0
   m_Name: block1
   m_TagString: Untagged
@@ -214,7 +213,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -83.369, y: 185.838, z: -10.511001}
---- !u!114 &-1698607849527241672
+--- !u!114 &8321738502206531053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,25 +239,3 @@ MonoBehaviour:
   blockRotatoin6: {x: 0, y: 0.72123456, z: 0, w: 0.6926909}
   blockPosition7: {x: 0.615, y: 0.964, z: -1.183}
   blockRotatoin7: {x: 0.7053263, y: -0.019262621, z: 0.7084099, w: 0.017296528}
---- !u!114 &-7687532589868057803
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7816937879699956924}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 1
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 0
-  InstantiationId: 0
-  isRuntimeInstantiated: 0

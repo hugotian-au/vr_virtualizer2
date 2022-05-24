@@ -28,8 +28,8 @@ public class MyInitBlockPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var pv = GetComponent<PhotonView>();
-        pv.RequestOwnership();
+        // var pv = GetComponent<PhotonView>();
+        // pv.RequestOwnership();
 
         if (gameObject.name == "block1(Clone)")
         {
