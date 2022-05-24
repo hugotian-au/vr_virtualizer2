@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2510570274084323822}
   - component: {fileID: 8403830959647675937}
-  - component: {fileID: 7405899161590930379}
   m_Layer: 0
   m_Name: VRMale
   m_TagString: Untagged
@@ -50,20 +49,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents:
-  - {fileID: 7405899161590930379}
+  ObservedComponents: []
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &7405899161590930379
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7257929698362599201}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4c05ef418bf41340828cc9f26dfc8ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

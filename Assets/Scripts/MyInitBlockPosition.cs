@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class MyInitBlockPosition : MonoBehaviour
 {
@@ -27,37 +28,40 @@ public class MyInitBlockPosition : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameObject.name == "block1(clone)")
+        var pv = GetComponent<PhotonView>();
+        pv.RequestOwnership();
+
+        if (gameObject.name == "block1(Clone)")
         {
             transform.localPosition = blockPosition1;
             transform.localRotation = blockRotatoin1;
         }
-        else if (gameObject.name == "block2(clone)")
+        else if (gameObject.name == "block2(Clone)")
         {
             transform.localPosition = blockPosition2;
             transform.localRotation = blockRotatoin2;
         }
-        else if (gameObject.name == "block3(clone)")
+        else if (gameObject.name == "block3(Clone)")
         {
             transform.localPosition = blockPosition3;
             transform.localRotation = blockRotatoin3;
         }
-        else if (gameObject.name == "block4(clone)")
+        else if (gameObject.name == "block4(Clone)")
         {
             transform.localPosition = blockPosition4;
             transform.localRotation = blockRotatoin4;
         }
-        else if (gameObject.name == "block5(clone)")
+        else if (gameObject.name == "block5(Clone)")
         {
             transform.localPosition = blockPosition5;
             transform.localRotation = blockRotatoin5;
         }
-        else if (gameObject.name == "block6(clone)")
+        else if (gameObject.name == "block6(Clone)")
         {
             transform.localPosition = blockPosition6;
             transform.localRotation = blockRotatoin6;
         }
-        else if (gameObject.name == "block7(clone)")
+        else if (gameObject.name == "block7(Clone)")
         {
             transform.localPosition = blockPosition7;
             transform.localRotation = blockRotatoin7;
