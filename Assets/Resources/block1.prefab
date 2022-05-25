@@ -190,7 +190,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7435591665626119686}
-  - component: {fileID: 5935628574736141799}
+  - component: {fileID: -6845498809314258416}
   m_Layer: 0
   m_Name: block1
   m_TagString: Untagged
@@ -213,7 +213,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -83.369, y: 185.838, z: -10.511001}
---- !u!114 &5935628574736141799
+--- !u!114 &-6845498809314258416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,17 +225,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9616aa6f8ab218845bcbdf401a4b1551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockPosition1: {x: 0.6, y: 1.4, z: -1.365}
-  blockRotatoin1: {x: -0.034594078, y: 0.7458157, z: 0.664857, w: 0.022964522}
-  blockPosition2: {x: 0.897, y: 1.3, z: -1.365}
-  blockRotatoin2: {x: 0.011409027, y: -0.7070148, z: -0.7070147, w: -0.011409025}
-  blockPosition3: {x: 1.222, y: 1.283, z: -1.342}
-  blockRotatoin3: {x: 0, y: -0.69356525, z: 0, w: 0.7203938}
-  blockPosition4: {x: 0.746, y: 1.653, z: -1.199}
-  blockRotatoin4: {x: 0, y: 0.72953, z: 0, w: 0.6839489}
-  blockPosition5: {x: 0.94, y: 1.64, z: -1.191}
-  blockRotatoin5: {x: 0, y: 0, z: -0.7311871, w: 0.682177}
-  blockPosition6: {x: 1.231, y: 1.636, z: -1.221}
-  blockRotatoin6: {x: 0, y: 0.72123456, z: 0, w: 0.6926909}
-  blockPosition7: {x: 0.615, y: 0.964, z: -1.183}
-  blockRotatoin7: {x: 0.7053263, y: -0.019262621, z: 0.7084099, w: 0.017296528}
