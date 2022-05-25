@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DilmerGames.Enums;
 using DilmerGames.Core.Utilities;
+using Photon.Pun;
 
 namespace DilmerGames
 {
@@ -62,6 +63,9 @@ namespace DilmerGames
 
         void AddNewLineRenderer()
         {
+            var pv = GetComponent<PhotonView>();
+            pv.RequestOwnership();
+
             positionCount = 0;
             GameObject go = new GameObject($"LineRenderer_{controlHand.ToString()}_{lines.Count}");
             go.transform.parent = objectToTrackMovement.transform.parent;
