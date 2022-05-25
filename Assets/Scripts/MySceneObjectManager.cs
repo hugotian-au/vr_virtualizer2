@@ -15,10 +15,19 @@ public class MySceneObjectManager : MonoBehaviourPunCallbacks
     public GameObject sceneBlock6;
     public GameObject sceneBlock7;
 
+    private bool created = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    void Update()
+    {
+        if (created) return;
+        created = true;
         // PhotonNetwork.SetMasterClient(PhotonNetwork.MasterClient.GetNext());
         if (!PhotonNetwork.IsMasterClient)
         {
