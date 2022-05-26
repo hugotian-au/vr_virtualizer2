@@ -11,7 +11,6 @@ namespace DilmerGames
         [SerializeField]
         private ControlHand controlHand = ControlHand.NoSet;
 
-        [SerializeField]
         private GameObject objectToTrackMovement;
 
         private Vector3 prevPointDistance = Vector3.zero;
@@ -34,8 +33,7 @@ namespace DilmerGames
         [SerializeField]
         private Color defaultColor = Color.white;
 
-        [SerializeField]
-        private GameObject editorObjectToTrackMovement;
+        public GameObject editorObjectToTrackMovement;
 
         [SerializeField]
         private bool allowEditorControls = true;
@@ -57,6 +55,21 @@ namespace DilmerGames
             }
 
             #endif
+
+        }
+
+        void Start()
+        {
+            if (gameObject.name == "VRDrawLeft(Clone)")
+            {
+                var trackObject = GameObject.Find("OculusTouchForQuestAndRiftS_Left");
+                objectToTrackMovement = trackObject;
+            }
+            if (gameObject.name == "VRDrawRight(Clone)")
+            {
+                var trackObject = GameObject.Find("OculusTouchForQuestAndRiftS_Right");
+                objectToTrackMovement = trackObject;
+            }
 
             AddNewLineRenderer();
         }
@@ -80,7 +93,7 @@ namespace DilmerGames
             goLineRenderer.SetPosition(0, objectToTrackMovement.transform.position);
 
             // send position
-            TCPControllerClient.Instance.AddNewLine(objectToTrackMovement.transform.position);
+            // TCPControllerClient.Instance.AddNewLine(objectToTrackMovement.transform.position);
 
             currentLineRender = goLineRenderer;
             lines.Add(goLineRenderer);
@@ -88,8 +101,6 @@ namespace DilmerGames
 
         void Update()
         {
-            if(!vrControllerOptions.IsScreenHidden) return;
-
     //#if !UNITY_EDITOR
             // primary left controller
             if(controlHand == ControlHand.Left && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
@@ -170,7 +181,7 @@ namespace DilmerGames
             currentLineRender.SetPosition(positionCount, position);
             
             // send position
-            TCPControllerClient.Instance.UpdateLine(position);
+            // TCPControllerClient.Instance.UpdateLine(position);
         }
 
         public void UpdateLineWidth(float newValue)

@@ -3628,6 +3628,10 @@ MonoBehaviour:
     type: 3}
   remotePlayerPrefab: {fileID: 7257929698362599201, guid: e36946e232908b04b848d7c030b230bc,
     type: 3}
+  vrdrawLeftPrefab: {fileID: 3890019208996153163, guid: 8d59174c3a6006643aa4ccba960a914a,
+    type: 3}
+  vrdrawRightPrefab: {fileID: 3029815790958188810, guid: 68b6432f54e20124ca707283104fcdd4,
+    type: 3}
 --- !u!4 &1537185461
 Transform:
   m_ObjectHideFlags: 0

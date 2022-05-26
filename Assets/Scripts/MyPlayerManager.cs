@@ -9,12 +9,16 @@ public class MyPlayerManager : MonoBehaviourPunCallbacks
     [Tooltip("The prefab to use for representing the player")]
     public GameObject localPlayerPrefab;
     public GameObject remotePlayerPrefab;
+    public GameObject vrdrawLeftPrefab;
+    public GameObject vrdrawRightPrefab;
 
     // Start is called before the first frame update
     void Start()
     {
         PhotonNetwork.Instantiate(this.remotePlayerPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
         // PhotonNetwork.InstantiateSceneObject()
+        PhotonNetwork.Instantiate(this.vrdrawLeftPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
+        PhotonNetwork.Instantiate(this.vrdrawRightPrefab.name, new Vector3(0f, 0f, 0f), Quaternion.identity, 0);
     }
 
 
