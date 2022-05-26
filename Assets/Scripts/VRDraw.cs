@@ -221,6 +221,7 @@ namespace DilmerGames
                 stream.SendNext(positionCount);
                 stream.SendNext(numCapVectices);
                 stream.SendNext(linePosition);
+                stream.SendNext(cameraPosition);
                 // stream.SendNext(defaultColor);
                 stream.SendNext(minDistanceBeforeNewPoint);
 
@@ -233,6 +234,7 @@ namespace DilmerGames
                 positionCount = (int)stream.ReceiveNext();
                 numCapVectices = (int)stream.ReceiveNext();
                 linePosition = (Vector3)stream.ReceiveNext();
+                cameraPosition = (Vector3)stream.ReceiveNext();
                 // defaultColor = (Color)stream.ReceiveNext();
                 minDistanceBeforeNewPoint = (float)stream.ReceiveNext();
             }
