@@ -87,7 +87,7 @@ MonoBehaviour:
   lineDefaultWidth: 0.01
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   editorObjectToTrackMovement: {fileID: 0}
-  allowEditorControls: 1
+  allowEditorControls: 0
   vrControllerOptions: {fileID: 0}
 --- !u!114 &-2384176784395654651
 MonoBehaviour:
