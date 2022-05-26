@@ -101,7 +101,7 @@ namespace DilmerGames
 
         void Update()
         {
-    //#if !UNITY_EDITOR
+    #if !UNITY_EDITOR
             // primary left controller
             if(controlHand == ControlHand.Left && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
             {
@@ -126,36 +126,36 @@ namespace DilmerGames
                 AddNewLineRenderer();
             }
 
-    //#endif
-/*
+    #endif
+
     #if UNITY_EDITOR
-            if(!allowEditorControls) return;
+            // if(!allowEditorControls) return;
 
             // left controller
             if(controlHand == ControlHand.Left && Input.GetKey(KeyCode.K))
             {
-                VRStats.Instance.firstText.text = $"Input.GetKey(KeyCode.K) {Input.GetKey(KeyCode.K)}";
+                // VRStats.Instance.firstText.text = $"Input.GetKey(KeyCode.K) {Input.GetKey(KeyCode.K)}";
                 UpdateLine();
             }
             else if(controlHand == ControlHand.Left && Input.GetKeyUp(KeyCode.K))
             {
-                VRStats.Instance.secondText.text = $"Input.GetKeyUp(KeyCode.K) {Input.GetKeyUp(KeyCode.K)}";
+                // VRStats.Instance.secondText.text = $"Input.GetKeyUp(KeyCode.K) {Input.GetKeyUp(KeyCode.K)}";
                 AddNewLineRenderer();
             }
 
             // right controller
             if(controlHand == ControlHand.Right && Input.GetKey(KeyCode.L))
             {
-                VRStats.Instance.firstText.text = $"Input.GetKey(KeyCode.L): {Input.GetKey(KeyCode.L)}";
+                // VRStats.Instance.firstText.text = $"Input.GetKey(KeyCode.L): {Input.GetKey(KeyCode.L)}";
                 UpdateLine();
             }
             else if(controlHand == ControlHand.Right && Input.GetKeyUp(KeyCode.L))
             {
-                VRStats.Instance.secondText.text = $"Input.GetKeyUp(KeyCode.L): {Input.GetKeyUp(KeyCode.L)}";
+                // VRStats.Instance.secondText.text = $"Input.GetKeyUp(KeyCode.L): {Input.GetKeyUp(KeyCode.L)}";
                 AddNewLineRenderer();
             }
     #endif
-*/
+
         }
 
         void UpdateLine()

@@ -1735,8 +1735,8 @@ public class akplay : MonoBehaviour {
         try
         {
             locker.AcquireWriterLock(int.MaxValue);
-            System.IO.File.AppendAllText(filePath, message);
-            System.IO.File.AppendAllText(filePath, "\n");
+            // System.IO.File.AppendAllText(filePath, message);
+            // System.IO.File.AppendAllText(filePath, "\n");
             /*
             var fStream = new FileStream(filePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
             byte[] info = new System.Text.UTF8Encoding(true).GetBytes(debug_string);
