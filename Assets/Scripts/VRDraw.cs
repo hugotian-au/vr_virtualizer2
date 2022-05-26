@@ -101,7 +101,7 @@ namespace DilmerGames
 
         void Update()
         {
-    #if !UNITY_EDITOR
+    // #if !UNITY_EDITOR
             // primary left controller
             if(controlHand == ControlHand.Left && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
             {
@@ -126,8 +126,8 @@ namespace DilmerGames
                 AddNewLineRenderer();
             }
 
-    #endif
-
+    // #endif
+    /*
     #if UNITY_EDITOR
             // if(!allowEditorControls) return;
 
@@ -155,6 +155,7 @@ namespace DilmerGames
                 AddNewLineRenderer();
             }
     #endif
+    */
 
         }
 
