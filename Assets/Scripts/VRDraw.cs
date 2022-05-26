@@ -8,6 +8,13 @@ namespace DilmerGames
 {
     public class VRDraw : MonoBehaviourPunCallbacks, IPunObservable
     {   
+        private int current_index = 0;
+        private Vector3 trackPosition;
+        private int numCapVectices;
+        private Vector3 linePosition;
+        private Vector3 cameraPosition;
+
+
         [SerializeField]
         private ControlHand controlHand = ControlHand.NoSet;
 
@@ -45,17 +52,6 @@ namespace DilmerGames
         
         void Awake() 
         {
-            #if UNITY_EDITOR
-            
-            // if we allow editor controls use the editor object to track movement because oculus
-            // blocks the movement of LeftControllerAnchor and RightControllerAnchor
-            if(allowEditorControls)
-            {
-                objectToTrackMovement = editorObjectToTrackMovement != null ? editorObjectToTrackMovement : objectToTrackMovement;
-            }
-
-            #endif
-
         }
 
         void Start()
@@ -97,6 +93,10 @@ namespace DilmerGames
 
             currentLineRender = goLineRenderer;
             lines.Add(goLineRenderer);
+            current_index++;
+            positionCount = 1;
+            numCapVectices = 90;
+            trackPosition = objectToTrackMovement.transform.position;
         }
 
         void Update()
@@ -179,9 +179,12 @@ namespace DilmerGames
             positionCount++;
             currentLineRender.positionCount = positionCount + 1;
             currentLineRender.SetPosition(positionCount, position);
-            
+
             // send position
             // TCPControllerClient.Instance.UpdateLine(position);
+            linePosition = position;
+
+
         }
 
         public void UpdateLineWidth(float newValue)
@@ -212,13 +215,26 @@ namespace DilmerGames
         {
             if (stream.IsWriting)
             {
-                stream.SendNext(prevPointDistance);
-                // stream.SendNext(rotation);
+                stream.SendNext(current_index);
+                stream.SendNext(trackPosition);
+                stream.SendNext(lineDefaultWidth);
+                stream.SendNext(positionCount);
+                stream.SendNext(numCapVectices);
+                stream.SendNext(linePosition);
+                // stream.SendNext(defaultColor);
+                stream.SendNext(minDistanceBeforeNewPoint);
+
             }
             else
             {
-                prevPointDistance = (Vector3)stream.ReceiveNext();
-                // rotation = (Quaternion)stream.ReceiveNext();
+                current_index = (int)stream.ReceiveNext();
+                trackPosition = (Vector3)stream.ReceiveNext();
+                lineDefaultWidth = (float)stream.ReceiveNext();
+                positionCount = (int)stream.ReceiveNext();
+                numCapVectices = (int)stream.ReceiveNext();
+                linePosition = (Vector3)stream.ReceiveNext();
+                // defaultColor = (Color)stream.ReceiveNext();
+                minDistanceBeforeNewPoint = (float)stream.ReceiveNext();
             }
         }
     }

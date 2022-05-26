@@ -82,7 +82,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlHand: 0
-  objectToTrackMovement: {fileID: 0}
   minDistanceBeforeNewPoint: 0.2
   minDrawingPressure: 0.8
   lineDefaultWidth: 0.01
