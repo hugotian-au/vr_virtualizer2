@@ -209,7 +209,7 @@ namespace DilmerGames
                 cameraPosition = Camera.main.transform.position;
 
                 stream.SendNext(current_index);
-                stream.SendNext(trackPosition);
+                // stream.SendNext(trackPosition);
                 stream.SendNext(lineDefaultWidth);
                 // stream.SendNext(positionCount);
                 // stream.SendNext(numCapVectices);
@@ -222,7 +222,7 @@ namespace DilmerGames
             else
             {
                 current_index = (int)stream.ReceiveNext();
-                trackPosition = (Vector3)stream.ReceiveNext();
+                // trackPosition = (Vector3)stream.ReceiveNext();
                 lineDefaultWidth = (float)stream.ReceiveNext();
                 // positionCount = (int)stream.ReceiveNext();
                 // numCapVectices = (int)stream.ReceiveNext();
