@@ -220,7 +220,7 @@ namespace DilmerGames
                 StartCoroutine(FadeAlpha(0,1, fadeSpeed));
             }
 
-            Resolver.Instance.VRPlayer.SetHaltUpdateMovement(!isScreenHidden);
+            // Resolver.Instance.VRPlayer.SetHaltUpdateMovement(!isScreenHidden);
         }
 
         private IEnumerator FadeAlpha(float from, float to, float duration) 

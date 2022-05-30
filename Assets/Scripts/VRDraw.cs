@@ -125,27 +125,34 @@ namespace DilmerGames
             //#if !UNITY_EDITOR
             // primary left controller
             cameraPosition = Camera.main.transform.position;
-            if (controlHand == ControlHand.Left && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
+            if (controlHand == ControlHand.Left)
             {
-                // VRStats.Instance.firstText.text = $"Axis1D.PrimaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)}";
-                UpdateLine();
-            }
-            else if(controlHand == ControlHand.Left && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
-            {
-                // VRStats.Instance.secondText.text = $"Button.PrimaryIndexTrigger: {Time.deltaTime}";
-                AddNewLineRenderer();
+                if (OVRInput.GetDown(OVRInput.Button.Four))
+                {
+                    if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
+                    {
+                        UpdateLine();
+                    }
+                    if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+                    {
+                        AddNewLineRenderer();
+                    }
+                }
             }
 
-            // secondary right controller
-            if(controlHand == ControlHand.Right && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > minDrawingPressure)
+            if (controlHand == ControlHand.Right)
             {
-                // VRStats.Instance.firstText.text = $"Axis1D.SecondaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger)}";
-                UpdateLine();
-            }
-            else if(controlHand == ControlHand.Right && OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
-            {
-                // VRStats.Instance.secondText.text = $"Button.SecondaryIndexTrigger: {Time.deltaTime}";
-                AddNewLineRenderer();
+                if (OVRInput.GetDown(OVRInput.Button.Two))
+                {
+                    if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > minDrawingPressure)
+                    {
+                        UpdateLine();
+                    }
+                    if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+                    {
+                        AddNewLineRenderer();
+                    }
+                }
             }
 
     // #endif

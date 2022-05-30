@@ -14,10 +14,10 @@ public class MyOvrGrabbable : OVRGrabbable
         var pv = GetComponent<PhotonView>();
         pv.RequestOwnership();
 
-        var rb = GetComponent<Rigidbody>();
-        rb.isKinematic = false;
-        rb.detectCollisions = true;
-        rb.WakeUp();
+        //var rb = GetComponent<Rigidbody>();
+        //rb.isKinematic = false;
+        //rb.detectCollisions = true;
+        //rb.WakeUp();
 
         base.GrabBegin(hand, grabPoint); //pass attributes down to Super
     }
@@ -29,5 +29,9 @@ public class MyOvrGrabbable : OVRGrabbable
         //Your code goes here
 
         base.GrabEnd(linearVelocity, angularVelocity);
+        var rb = GetComponent<Rigidbody>();
+        rb.isKinematic = false;
+        rb.detectCollisions = true;
+        rb.WakeUp();
     }
 }
