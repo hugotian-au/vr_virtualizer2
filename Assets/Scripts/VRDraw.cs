@@ -14,6 +14,8 @@ namespace DilmerGames
         private Vector3 linePosition;
         private Vector3 cameraPosition;
 
+        private bool needDrawLine = false;
+
         [SerializeField]
         private ControlHand controlHand = ControlHand.NoSet;
 
@@ -127,31 +129,41 @@ namespace DilmerGames
             cameraPosition = Camera.main.transform.position;
             if (controlHand == ControlHand.Left)
             {
-                if (OVRInput.GetDown(OVRInput.Button.Four))
+                if (OVRInput.Get(OVRInput.Button.Four))
                 {
-                    if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
-                    {
-                        UpdateLine();
-                    }
-                    if (OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
-                    {
-                        AddNewLineRenderer();
-                    }
+                    needDrawLine = true;
+                }
+                else
+                {
+                    needDrawLine = false;
+                }
+                if (needDrawLine && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
+                {
+                    UpdateLine();
+                }
+                if (needDrawLine && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+                {
+                    AddNewLineRenderer();
                 }
             }
 
             if (controlHand == ControlHand.Right)
             {
-                if (OVRInput.GetDown(OVRInput.Button.Two))
+                if (OVRInput.Get(OVRInput.Button.Two))
                 {
-                    if (OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > minDrawingPressure)
-                    {
-                        UpdateLine();
-                    }
-                    if (OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
-                    {
-                        AddNewLineRenderer();
-                    }
+                    needDrawLine = true;
+                }
+                else
+                {
+                    needDrawLine = false;
+                }
+                if (needDrawLine && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > minDrawingPressure)
+                {
+                    UpdateLine();
+                }
+                if (needDrawLine && OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+                {
+                    AddNewLineRenderer();
                 }
             }
 
