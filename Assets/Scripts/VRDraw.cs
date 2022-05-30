@@ -115,13 +115,18 @@ namespace DilmerGames
 
             currentLineRender = goLineRenderer;
             lines.Add(goLineRenderer);
+
+            current_index = lines.Count;
+            trackPosition = objectToTrackMovement.transform.position;
+            cameraPosition = Camera.main.transform.position;
         }
 
         void Update()
         {
-    //#if !UNITY_EDITOR
+            //#if !UNITY_EDITOR
             // primary left controller
-            if(controlHand == ControlHand.Left && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
+            cameraPosition = Camera.main.transform.position;
+            if (controlHand == ControlHand.Left && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
             {
                 // VRStats.Instance.firstText.text = $"Axis1D.PrimaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)}";
                 UpdateLine();
@@ -201,28 +206,30 @@ namespace DilmerGames
         {
             if (stream.IsWriting)
             {
+                cameraPosition = Camera.main.transform.position;
+
                 stream.SendNext(current_index);
-                // stream.SendNext(trackPosition);
-                // stream.SendNext(lineDefaultWidth);
+                stream.SendNext(trackPosition);
+                stream.SendNext(lineDefaultWidth);
                 // stream.SendNext(positionCount);
                 // stream.SendNext(numCapVectices);
-                stream.SendNext(linePosition);
-                // stream.SendNext(cameraPosition);
+                stream.SendNext(prevPointDistance);
+                stream.SendNext(cameraPosition);
                 // stream.SendNext(defaultColor);
-                // stream.SendNext(minDistanceBeforeNewPoint);
+                stream.SendNext(minDistanceBeforeNewPoint);
 
             }
             else
             {
                 current_index = (int)stream.ReceiveNext();
-                // trackPosition = (Vector3)stream.ReceiveNext();
-                // lineDefaultWidth = (float)stream.ReceiveNext();
+                trackPosition = (Vector3)stream.ReceiveNext();
+                lineDefaultWidth = (float)stream.ReceiveNext();
                 // positionCount = (int)stream.ReceiveNext();
                 // numCapVectices = (int)stream.ReceiveNext();
-                linePosition = (Vector3)stream.ReceiveNext();
-                // cameraPosition = (Vector3)stream.ReceiveNext();
+                prevPointDistance = (Vector3)stream.ReceiveNext();
+                cameraPosition = (Vector3)stream.ReceiveNext();
                 // defaultColor = (Color)stream.ReceiveNext();
-                // minDistanceBeforeNewPoint = (float)stream.ReceiveNext();
+                minDistanceBeforeNewPoint = (float)stream.ReceiveNext();
             }
         }
     }
