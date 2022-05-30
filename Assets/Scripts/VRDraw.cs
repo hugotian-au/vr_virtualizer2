@@ -15,6 +15,7 @@ namespace DilmerGames
         private Vector3 cameraPosition;
 
         private bool needDrawLine = false;
+        private bool lineDrawn = false;
 
         [SerializeField]
         private ControlHand controlHand = ControlHand.NoSet;
@@ -140,10 +141,12 @@ namespace DilmerGames
                 if (needDrawLine && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
                 {
                     UpdateLine();
+                    lineDrawn = true;
                 }
-                if (needDrawLine && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
+                if (lineDrawn && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
                 {
                     AddNewLineRenderer();
+                    lineDrawn = false;
                 }
             }
 
@@ -160,10 +163,12 @@ namespace DilmerGames
                 if (needDrawLine && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > minDrawingPressure)
                 {
                     UpdateLine();
+                    lineDrawn = true;
                 }
-                if (needDrawLine && OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
+                if (lineDrawn && OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
                 {
                     AddNewLineRenderer();
+                    lineDrawn = false;
                 }
             }
 
