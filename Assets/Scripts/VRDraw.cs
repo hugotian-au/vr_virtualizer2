@@ -7,17 +7,17 @@ using Photon.Pun;
 namespace DilmerGames
 {
     public class VRDraw : MonoBehaviourPunCallbacks, IPunObservable
-    {   
+    {
         private int current_index = 0;
         private Vector3 trackPosition;
         private int numCapVectices;
         private Vector3 linePosition;
         private Vector3 cameraPosition;
 
-
         [SerializeField]
         private ControlHand controlHand = ControlHand.NoSet;
 
+        [SerializeField]
         private GameObject objectToTrackMovement;
 
         private Vector3 prevPointDistance = Vector3.zero;
@@ -40,7 +40,8 @@ namespace DilmerGames
         [SerializeField]
         private Color defaultColor = Color.white;
 
-        public GameObject editorObjectToTrackMovement;
+        [SerializeField]
+        private GameObject editorObjectToTrackMovement;
 
         [SerializeField]
         private bool allowEditorControls = true;
@@ -49,10 +50,34 @@ namespace DilmerGames
         private VRControllerOptions vrControllerOptions;
         
         public VRControllerOptions VRControllerOptions => vrControllerOptions;
-        
+
+        /*
         void Awake() 
         {
+#if UNITY_EDITOR
+            
+            // if we allow editor controls use the editor object to track movement because oculus
+            // blocks the movement of LeftControllerAnchor and RightControllerAnchor
+            if(allowEditorControls)
+            {
+                objectToTrackMovement = editorObjectToTrackMovement != null ? editorObjectToTrackMovement : objectToTrackMovement;
+            }
+
+#endif
+            if (gameObject.name == "VRDrawLeft(Clone)")
+            {
+                var trackObject = GameObject.Find("OculusTouchForQuestAndRiftS_Left");
+                objectToTrackMovement = trackObject;
+            }
+            if (gameObject.name == "VRDrawRight(Clone)")
+            {
+                var trackObject = GameObject.Find("OculusTouchForQuestAndRiftS_Right");
+                objectToTrackMovement = trackObject;
+            }
+
+            AddNewLineRenderer();
         }
+        */
 
         void Start()
         {
@@ -72,9 +97,6 @@ namespace DilmerGames
 
         void AddNewLineRenderer()
         {
-            var pv = GetComponent<PhotonView>();
-            pv.RequestOwnership();
-
             positionCount = 0;
             GameObject go = new GameObject($"LineRenderer_{controlHand.ToString()}_{lines.Count}");
             go.transform.parent = objectToTrackMovement.transform.parent;
@@ -84,79 +106,45 @@ namespace DilmerGames
             goLineRenderer.endWidth = lineDefaultWidth;
             goLineRenderer.useWorldSpace = true;
             goLineRenderer.material = MaterialUtils.CreateMaterial(defaultColor, $"Material_{controlHand.ToString()}_{lines.Count}");
-            goLineRenderer.positionCount = 2;
+            goLineRenderer.positionCount = 1;
             goLineRenderer.numCapVertices = 90;
             goLineRenderer.SetPosition(0, objectToTrackMovement.transform.position);
 
             // send position
-            // TCPControllerClient.Instance.AddNewLine(objectToTrackMovement.transform.position);
+            TCPControllerClient.Instance.AddNewLine(objectToTrackMovement.transform.position);
 
             currentLineRender = goLineRenderer;
             lines.Add(goLineRenderer);
-            current_index++;
-            positionCount = 1;
-            numCapVectices = 90;
-            trackPosition = objectToTrackMovement.transform.position;
         }
 
         void Update()
         {
-    // #if !UNITY_EDITOR
+    //#if !UNITY_EDITOR
             // primary left controller
             if(controlHand == ControlHand.Left && OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger) > minDrawingPressure)
             {
-                //VRStats.Instance.firstText.text = $"Axis1D.PrimaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)}";
+                // VRStats.Instance.firstText.text = $"Axis1D.PrimaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger)}";
                 UpdateLine();
             }
             else if(controlHand == ControlHand.Left && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
             {
-                //VRStats.Instance.secondText.text = $"Button.PrimaryIndexTrigger: {Time.deltaTime}";
+                // VRStats.Instance.secondText.text = $"Button.PrimaryIndexTrigger: {Time.deltaTime}";
                 AddNewLineRenderer();
             }
 
             // secondary right controller
             if(controlHand == ControlHand.Right && OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger) > minDrawingPressure)
             {
-                //VRStats.Instance.firstText.text = $"Axis1D.SecondaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger)}";
+                // VRStats.Instance.firstText.text = $"Axis1D.SecondaryIndexTrigger: {OVRInput.Get(OVRInput.Axis1D.SecondaryIndexTrigger)}";
                 UpdateLine();
             }
             else if(controlHand == ControlHand.Right && OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
             {
-                //VRStats.Instance.secondText.text = $"Button.SecondaryIndexTrigger: {Time.deltaTime}";
+                // VRStats.Instance.secondText.text = $"Button.SecondaryIndexTrigger: {Time.deltaTime}";
                 AddNewLineRenderer();
             }
 
     // #endif
-    /*
-    #if UNITY_EDITOR
-            // if(!allowEditorControls) return;
-
-            // left controller
-            if(controlHand == ControlHand.Left && Input.GetKey(KeyCode.K))
-            {
-                // VRStats.Instance.firstText.text = $"Input.GetKey(KeyCode.K) {Input.GetKey(KeyCode.K)}";
-                UpdateLine();
-            }
-            else if(controlHand == ControlHand.Left && Input.GetKeyUp(KeyCode.K))
-            {
-                // VRStats.Instance.secondText.text = $"Input.GetKeyUp(KeyCode.K) {Input.GetKeyUp(KeyCode.K)}";
-                AddNewLineRenderer();
-            }
-
-            // right controller
-            if(controlHand == ControlHand.Right && Input.GetKey(KeyCode.L))
-            {
-                // VRStats.Instance.firstText.text = $"Input.GetKey(KeyCode.L): {Input.GetKey(KeyCode.L)}";
-                UpdateLine();
-            }
-            else if(controlHand == ControlHand.Right && Input.GetKeyUp(KeyCode.L))
-            {
-                // VRStats.Instance.secondText.text = $"Input.GetKeyUp(KeyCode.L): {Input.GetKeyUp(KeyCode.L)}";
-                AddNewLineRenderer();
-            }
-    #endif
-    */
-
         }
 
         void UpdateLine()
@@ -180,12 +168,9 @@ namespace DilmerGames
             positionCount++;
             currentLineRender.positionCount = positionCount + 1;
             currentLineRender.SetPosition(positionCount, position);
-
+            
             // send position
-            // TCPControllerClient.Instance.UpdateLine(position);
-            linePosition = position;
-
-
+            TCPControllerClient.Instance.UpdateLine(position);
         }
 
         public void UpdateLineWidth(float newValue)
@@ -217,27 +202,27 @@ namespace DilmerGames
             if (stream.IsWriting)
             {
                 stream.SendNext(current_index);
-                stream.SendNext(trackPosition);
-                stream.SendNext(lineDefaultWidth);
-                stream.SendNext(positionCount);
-                stream.SendNext(numCapVectices);
+                // stream.SendNext(trackPosition);
+                // stream.SendNext(lineDefaultWidth);
+                // stream.SendNext(positionCount);
+                // stream.SendNext(numCapVectices);
                 stream.SendNext(linePosition);
-                stream.SendNext(cameraPosition);
+                // stream.SendNext(cameraPosition);
                 // stream.SendNext(defaultColor);
-                stream.SendNext(minDistanceBeforeNewPoint);
+                // stream.SendNext(minDistanceBeforeNewPoint);
 
             }
             else
             {
                 current_index = (int)stream.ReceiveNext();
-                trackPosition = (Vector3)stream.ReceiveNext();
-                lineDefaultWidth = (float)stream.ReceiveNext();
-                positionCount = (int)stream.ReceiveNext();
-                numCapVectices = (int)stream.ReceiveNext();
+                // trackPosition = (Vector3)stream.ReceiveNext();
+                // lineDefaultWidth = (float)stream.ReceiveNext();
+                // positionCount = (int)stream.ReceiveNext();
+                // numCapVectices = (int)stream.ReceiveNext();
                 linePosition = (Vector3)stream.ReceiveNext();
-                cameraPosition = (Vector3)stream.ReceiveNext();
+                // cameraPosition = (Vector3)stream.ReceiveNext();
                 // defaultColor = (Color)stream.ReceiveNext();
-                minDistanceBeforeNewPoint = (float)stream.ReceiveNext();
+                // minDistanceBeforeNewPoint = (float)stream.ReceiveNext();
             }
         }
     }
