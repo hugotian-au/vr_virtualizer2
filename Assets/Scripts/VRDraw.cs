@@ -22,8 +22,7 @@ namespace DilmerGames
 
         private Vector3 prevPointDistance = Vector3.zero;
 
-        [SerializeField, Range(0, 1.0f)]
-        private float minDistanceBeforeNewPoint = 0.2f;
+        private float minDistanceBeforeNewPoint = 0.01f;
 
         [SerializeField, Range(0, 1.0f)]
         private float minDrawingPressure = 0.8f;

@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlHand: 2
-  minDistanceBeforeNewPoint: 0.2
+  objectToTrackMovement: {fileID: 0}
   minDrawingPressure: 0.8
   lineDefaultWidth: 0.01
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
