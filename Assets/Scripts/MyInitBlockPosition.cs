@@ -14,10 +14,10 @@ public class MyInitBlockPosition : MonoBehaviour
     private Vector3 blockPosition3 = new Vector3(1.222f, 1.163f, -1.342f);
     private Quaternion blockRotatoin3 = Quaternion.Euler(0f, -87.826f, 0f);
 
-    private Vector3 blockPosition4 = new Vector3(0.565f, 1.533f, -1.199f);
+    private Vector3 blockPosition4 = new Vector3(0.777f, 1.533f, -1.199f);
     private Quaternion blockRotatoin4 = Quaternion.Euler(0f, 93.69401f, 0f);
 
-    private Vector3 blockPosition5 = new Vector3(0.89f, 1.52f, -1.191f);
+    private Vector3 blockPosition5 = new Vector3(0.982f, 1.52f, -1.191f);
     private Quaternion blockRotatoin5 = Quaternion.Euler(0f, 0f, -93.97201f);
 
     private Vector3 blockPosition6 = new Vector3(1.231f, 1.516f, -1.221f);

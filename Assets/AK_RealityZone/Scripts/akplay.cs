@@ -672,15 +672,15 @@ public class akplay : MonoBehaviour {
                     vizArrayTemp[i].name = "Visualization_" + i;
                     if (i == 0)
                     {
-                        // vizArrayTemp[i].transform.parent = akContent0.transform;
+                        vizArrayTemp[i].transform.parent = akContent0.transform;
                     }
                     else if (i == 1)
                     {
-                        // vizArrayTemp[i].transform.parent = akContent1.transform;
+                        vizArrayTemp[i].transform.parent = akContent1.transform;
                     }
                     else
                     {
-                        // vizArrayTemp[i].transform.parent = akContent2.transform;
+                        vizArrayTemp[i].transform.parent = akContent2.transform;
                     }
 
                     skelVisArrayTemp[i] = new Dictionary<uint, SkeletonVis>();
