@@ -50,7 +50,7 @@ public class ARUserController : MonoBehaviourPunCallbacks, IPunObservable
             animator = GetComponent<Animator>();
             if (!animator)
             {
-                Debug.LogError("PlayerAnimatorManager is Missing Animator Component", this);
+                //Debug.LogError("PlayerAnimatorManager is Missing Animator Component", this);
             }
         }
     }
@@ -83,24 +83,28 @@ public class ARUserController : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            Vector3 diff = position - prevPosition;
-            // anim.SetFloat("VerticalMov", Input.GetAxis("Vertical"));
-            if (diff.x > 0.01f || diff.z > 0.01f || diff.x < -0.01f || diff.z < -0.01f)
+            if (animator)
             {
-                var new_position = new Vector3(position.x, 0, position.z);
-                transform.LookAt(new_position);
-                transform.localPosition = new_position;
-                // animator.SetFloat("VerticalMov", 0.2f);
-                animator.SetFloat("Speed", 0.3f);
-                // animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
-            }
-            else
-            {
-                animator.SetFloat("Speed", 0.0f);
-            }
-            // anim.SetFloat("HorizontalMov", Input.GetAxis("Horizontal"));
+                Vector3 diff = position - prevPosition;
+                // anim.SetFloat("VerticalMov", Input.GetAxis("Vertical"));
+                if (diff.x > 0.01f || diff.z > 0.01f || diff.x < -0.01f || diff.z < -0.01f)
+                {
+                    var new_position = new Vector3(position.x, 0, position.z);
+                    transform.LookAt(new_position);
+                    transform.localPosition = new_position;
+                    // animator.SetFloat("VerticalMov", 0.2f);
+                    animator.SetFloat("Speed", 0.3f);
+                    // animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
+                }
+                else
+                {
+                    animator.SetFloat("Speed", 0.0f);
+                }
+                // anim.SetFloat("HorizontalMov", Input.GetAxis("Horizontal"));
 
-            prevPosition = position;
+                prevPosition = position;
+            }
+
         }
     }
 
