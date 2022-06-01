@@ -67,8 +67,8 @@ public class VRUserController : MonoBehaviourPunCallbacks, IPunObservable
             // rotation *= Quaternion.Euler(0, 90, 0); // this adds a 90 degrees Y rotation
             // transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime*2);
             //transform.rotation = rotation;
-            // transform.LookAt(lookPos);
-            // transform.position = new Vector3(camera_position.x, 0.0f, camera_position.z);
+            transform.LookAt(lookPos);
+            transform.position = new Vector3(camera_position.x, 0.0f, camera_position.z);
 
             position = transform.localPosition;  // Use the world position since the localPosition is not changed
         }
