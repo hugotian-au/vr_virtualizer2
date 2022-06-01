@@ -8,9 +8,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Launcher.unity
     guid: a72ab65475911ab40adeaab8c7b6f3df
-  - enabled: 1
-    path: Assets/Scenes/Room3.unity
-    guid: c3ef8c457e45cca4f9efa45ac36ce3ec
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Room.unity
     guid: 6999365c12a394741b4c58ff956ba3b5
