@@ -85,7 +85,7 @@ MonoBehaviour:
   objectToTrackMovement: {fileID: 0}
   minDrawingPressure: 0.8
   lineDefaultWidth: 0.01
-  defaultColor: {r: 0.9528302, g: 0.36405307, b: 0.36405307, a: 1}
+  defaultColor: {r: 0.9245283, g: 0.039248828, b: 0.039248828, a: 1}
   editorObjectToTrackMovement: {fileID: 0}
   allowEditorControls: 0
   vrControllerOptions: {fileID: 0}
