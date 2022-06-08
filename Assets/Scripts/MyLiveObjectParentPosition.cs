@@ -13,7 +13,7 @@ public class MyLiveObjectParentPosition : MonoBehaviour
         }
         else if (gameObject.name == "ak_content_1")
         {
-            transform.localPosition = new Vector3(0.05f, -0.164f, 0.055f);
+            transform.localPosition = new Vector3(0.05f, -0.135f, 0.055f);
         }
         else if(gameObject.name == "ak_content_2")
         {
