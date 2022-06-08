@@ -9,15 +9,15 @@ public class MyLiveObjectParentPosition : MonoBehaviour
     {
         if (gameObject.name == "ak_content_0")
         {
-            transform.localPosition = new Vector3(-0.03f, -0.15f, 0.03f);
+            transform.localPosition = new Vector3(0.008f, -0.174f, 0.08f);
         }
         else if (gameObject.name == "ak_content_1")
         {
-            transform.localPosition = new Vector3(-0.03f, -0.152f, 0.02f);
+            transform.localPosition = new Vector3(0.05f, -0.164f, 0.055f);
         }
         else if(gameObject.name == "ak_content_2")
         {
-            transform.localPosition = new Vector3(-0.039f, -0.133f, -0.002f);
+            transform.localPosition = new Vector3(0.012f, -0.133f, -0.044f);
             transform.localRotation = Quaternion.Euler(0.009000001f, 0.433f, 0.317f);
 }
 
