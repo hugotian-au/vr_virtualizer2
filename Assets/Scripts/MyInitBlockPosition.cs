@@ -5,26 +5,26 @@ using Photon.Pun;
 
 public class MyInitBlockPosition : MonoBehaviour
 {
-    private Vector3 blockPosition1 = new Vector3(0.490f, 1.28f, -1.365f);
-    private Quaternion blockRotatoin1 = Quaternion.Euler(-83.369f, 185.838f, -10.511f);
+    private Vector3 blockPosition1 = new Vector3(0.5475666f, 1.399917f, -1.067f);
+    private Quaternion blockRotatoin1 = Quaternion.Euler(-91f, 59.59f, -62.083f);
 
-    private Vector3 blockPosition2 = new Vector3(0.874f, 1.18f, -1.365f);
+    private Vector3 blockPosition2 = new Vector3(0.932f, 1.198f, -1.311f);
     private Quaternion blockRotatoin2 = Quaternion.Euler(-90.00001f, 0f, -181.849f);
 
-    private Vector3 blockPosition3 = new Vector3(1.170f, 1.163f, -1.342f);
+    private Vector3 blockPosition3 = new Vector3(1.264f, 1.186f, -1.297f);
     private Quaternion blockRotatoin3 = Quaternion.Euler(0f, -87.826f, 0f);
 
-    private Vector3 blockPosition4 = new Vector3(0.700f, 1.533f, -1.199f);
+    private Vector3 blockPosition4 = new Vector3(0.781f, 1.533f, -1.173f);
     private Quaternion blockRotatoin4 = Quaternion.Euler(0f, 93.69401f, 0f);
 
-    private Vector3 blockPosition5 = new Vector3(1.00f, 1.52f, -1.191f);
+    private Vector3 blockPosition5 = new Vector3(0.964f, 1.547f, -1.162f);
     private Quaternion blockRotatoin5 = Quaternion.Euler(0f, 0f, -93.97201f);
 
-    private Vector3 blockPosition6 = new Vector3(1.145f, 1.516f, -1.221f);
+    private Vector3 blockPosition6 = new Vector3(1.256f, 1.577f, -1.183f);
     private Quaternion blockRotatoin6 = Quaternion.Euler(0f, 92.313f, 0f);
 
-    private Vector3 blockPosition7 = new Vector3(0.537f, 0.844f, -1.183f);
-    private Quaternion blockRotatoin7 = Quaternion.Euler(2.963f, 89.75401f, 180.153f);
+    private Vector3 blockPosition7 = new Vector3(0.609f, 0.826f, -1.285f);
+    private Quaternion blockRotatoin7 = Quaternion.Euler(2.228f, 180.2351f, 181.38f);
 
     private bool updated = false;
     // Start is called before the first frame update
