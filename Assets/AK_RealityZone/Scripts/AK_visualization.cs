@@ -52,7 +52,10 @@ public class AK_visualization : MonoBehaviour {
     }
 
     public cameraInfoStruct cameraInfo;
+    public Matrix4x4 Matrix1;
+    public Matrix4x4 Matrix2;
 
+    /*
     private Vector3 registeredPosition0 = new Vector3(1.694f, 2.74f, 1.182f);
     private Vector3 registeredRotation0 = new Vector3(150.141f, 33.185f, 2.127991f);
 
@@ -61,10 +64,25 @@ public class AK_visualization : MonoBehaviour {
 
     private Vector3 registeredPosition2 = new Vector3(1.581f, 2.80f, -0.909f);
     private Vector3 registeredRotation2 = new Vector3(31.018f, -36.874f, -178.234f);
+    */
+
+    //private Vector3 registeredPosition0 = new Vector3(1.697f, 2.568667f, 1.31569f);
+    private Vector3 registeredPosition0 = new Vector3(0f, 0f, 0f);
+    private Quaternion registeredRotation0 = Quaternion.Euler(0f, 0f, 0f);
+
+    private Vector3 registeredPosition1 = new Vector3(0f, 0f, 0f);
+    //private Vector3 registeredRotation1 = new Vector3(-5.366f, 72.024f, -45.8455f);
+    // private Vector3 registeredRotation1 = new Vector3(0.0f, 0.0f, 0.0f);
+    private Quaternion registeredRotation1 = Quaternion.Euler(0f, 0f, 0f);
+
+
+    private Vector3 registeredPosition2 = new Vector3(0f, 0f, 0f);
+    private Quaternion registeredRotation2 = Quaternion.Euler(0f, 0f, 0f);
 
     // Use this for initialization
     void Start()
     {
+
         matDefault = new Material(AK_pointCloudShader);
         foreach (Camera cam in Camera.allCameras)
         {
@@ -91,9 +109,17 @@ public class AK_visualization : MonoBehaviour {
             regPos = registeredPosition2;
             regRotation = registeredRotation2;
         }
-        Quaternion registeredRotation = Quaternion.Euler(regRotation.x, regRotation.y, regRotation.z);
+
+        Matrix1 = Matrix4x4.identity;
+        Matrix1.SetTRS(regPos, regRotation, new Vector3(1, 1, 1));
+
         transform.localPosition = regPos;
-        transform.localRotation = registeredRotation;
+        transform.localRotation = regRotation;
+
+        var v = new Vector4(0, 0, 0, 1);
+        v = Matrix1 * v;
+        transform.localPosition = new Vector3(v.x, v.y, v.z);
+
     }
 
     RenderTexture resized_depth_tex = null;
@@ -104,7 +130,7 @@ public class AK_visualization : MonoBehaviour {
     public float multiplier = 1.0f;
 
     public Vector3 regPos;
-    public Vector3 regRotation;
+    public Quaternion regRotation;
     public bool enable_manual_adjust = false;
 
     // Update is called once per frame
@@ -177,9 +203,17 @@ public class AK_visualization : MonoBehaviour {
 
         if (!enable_manual_adjust)
         {
-            Quaternion registeredRotation = Quaternion.Euler(regRotation.x, regRotation.y, regRotation.z);
+            // transform.localPosition = regPos;
+            // transform.localRotation = regRotation;
+            Matrix1 = Matrix4x4.identity;
+            Matrix1.SetTRS(regPos, regRotation, new Vector3(1, 1, 1));
+
             transform.localPosition = regPos;
-            transform.localRotation = registeredRotation;
+            transform.localRotation = regRotation;
+
+            var v = new Vector4(0, 0, 0, 1);
+            v = Matrix1 * v;
+            transform.localPosition = new Vector3(v.x, v.y, v.z);
         }
     }
 

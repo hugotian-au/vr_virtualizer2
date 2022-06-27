@@ -48,11 +48,46 @@ MonoBehaviour:
   depthTex: {fileID: 0}
   XYMap: {fileID: 0}
   AK_pointCloudShader: {fileID: 4800000, guid: 7116e3d659d91fe45b4946933e9f5658, type: 3}
-  size: 0.05
+  Matrix1:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  Matrix2:
+    e00: 0
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 0
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 0
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 0
+  size: 0.02
   enhanced_depth_sampling: 0
   multiplier: 1
   regPos: {x: 0, y: 0, z: 0}
-  regRotation: {x: 0, y: 0, z: 0}
+  regRotation: {x: 0, y: 0, z: 0, w: 0}
+  enable_manual_adjust: 0
 --- !u!1 &1790784678029796
 GameObject:
   m_ObjectHideFlags: 0

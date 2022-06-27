@@ -196,7 +196,9 @@ Shader "Custom/AK_pointCloud"
 					colorPos = mul(_color_extrinsics, XYZpos);
 					colorPos = colorPos / colorPos.w;
 					colorPos.y = colorPos.y;
-					XYZpos.y = -XYZpos.y;
+					XYZpos.y = XYZpos.y;
+					//XYZpos.x = -XYZpos.x;
+					XYZpos.z = -XYZpos.z;
 
 					//project into color camera pixel space, without correcting for distortion
 					float4 color_uv = float4(0.0f, 0.0f, 0.0f, 0.0f);

@@ -713,6 +713,10 @@ public class akplay : MonoBehaviour {
         akContent1 = GameObject.Find("ak_content_1");
         akContent2 = GameObject.Find("ak_content_2");
 
+        //akContent0 = GameObject.Find("ak_content");
+        //akContent1 = GameObject.Find("ak_content");
+        //akContent2 = GameObject.Find("ak_content");
+
 
         if (verbose)
         {

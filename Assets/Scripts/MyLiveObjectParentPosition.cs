@@ -5,22 +5,48 @@ using UnityEngine;
 public class MyLiveObjectParentPosition : MonoBehaviour
 {
     // Start is called before the first frame update
+    public Matrix4x4 OriginPos = Matrix4x4.identity;
+    public Matrix4x4 Matrix1;
+    public Matrix4x4 Matrix2;
+    public Matrix4x4 Matrix3;
+    public Matrix4x4 MatrixPose;
+
     void Start()
     {
+        // Don't change this, Camera1.Position
+        Matrix1.SetTRS(new Vector3(1.713f, 2.616f, 1.222635f),
+                       Quaternion.Euler(-31.096f, 34.256f, -2.617f),
+                       new Vector3(1, 1, 1));
+        // Camera2.Position
+        Matrix2.SetTRS(new Vector3(-1.2798654f, 0.8009058f, 1.2420996f),
+                       Quaternion.Euler(-1.877354f, 89.60242f, -63.634f),
+                       new Vector3(1, 1, 1));
+        // Camera3.Position
+        Matrix3.SetTRS(new Vector3(1.7427824f, 1.2180851f, 2.1037217f),
+                       Quaternion.Euler(5.35802f, -71.978f, 45.8632f),
+                       new Vector3(1, 1, 1));
+
         if (gameObject.name == "ak_content_0")
         {
-            transform.localPosition = new Vector3(0.008f, -0.174f, 0.08f);
+            MatrixPose = Matrix1 * OriginPos; 
         }
         else if (gameObject.name == "ak_content_1")
         {
-            transform.localPosition = new Vector3(0.05f, -0.135f, 0.055f);
+            MatrixPose = Matrix2 * Matrix1 * OriginPos;
         }
         else if(gameObject.name == "ak_content_2")
         {
-            transform.localPosition = new Vector3(0.012f, -0.133f, -0.044f);
-            transform.localRotation = Quaternion.Euler(0.009000001f, 0.433f, 0.317f);
-}
+            MatrixPose = Matrix3 * Matrix1 * OriginPos;
+        }
 
+
+        transform.localPosition = new Vector3(MatrixPose.m03, MatrixPose.m13, MatrixPose.m23);
+        float qw = Mathf.Sqrt(1f + MatrixPose.m00 + MatrixPose.m11 + MatrixPose.m22) / 2;
+        float w = 4 * qw;
+        float qx = (MatrixPose.m21 - MatrixPose.m12) / w;
+        float qy = (MatrixPose.m02 - MatrixPose.m20) / w;
+        float qz = (MatrixPose.m10 - MatrixPose.m01) / w;
+        transform.localRotation = new Quaternion(qx, qy, qz, qw);
 
     }
 
