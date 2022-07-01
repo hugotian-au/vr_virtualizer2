@@ -14,29 +14,34 @@ public class MyLiveObjectParentPosition : MonoBehaviour
     void Start()
     {
         // Don't change this, Camera1.Position
-        Matrix1.SetTRS(new Vector3(1.713f, 2.616f, 1.222635f),
-                       Quaternion.Euler(-31.096f, 34.256f, -2.617f),
+        Matrix1.SetTRS(new Vector3(1.6789f, 2.616f, 1.228833f),
+                       Quaternion.Euler(-31.096f, 32.843f, -2.617f),
                        new Vector3(1, 1, 1));
         // Camera2.Position
-        Matrix2.SetTRS(new Vector3(-1.2798654f, 0.8009058f, 1.2420996f),
-                       Quaternion.Euler(-1.877354f, 89.60242f, -63.634f),
+        //Matrix2.SetTRS(new Vector3(-1.2798654f, 0.8009058f, 1.2420996f),
+        //               Quaternion.Euler(-1.877354f, 89.60242f, -63.634f),
+        //               new Vector3(1, 1, 1));
+        Matrix2.SetTRS(new Vector3(1.664f, 2.557f, -0.89f),
+                       Quaternion.Euler(-29.005f, 142.615f, -2.913f),
                        new Vector3(1, 1, 1));
         // Camera3.Position
-        Matrix3.SetTRS(new Vector3(1.7427824f, 1.2180851f, 2.1037217f),
-                       Quaternion.Euler(5.35802f, -71.978f, 45.8632f),
-                       new Vector3(1, 1, 1));
-
+        //Matrix3.SetTRS(new Vector3(1.7427824f, 1.2180851f, 2.1037217f),
+        //               Quaternion.Euler(5.35802f, -71.978f, 45.8632f),
+        //               new Vector3(1, 1, 1));
+        Matrix3.SetTRS(new Vector3(-1.61f, 2.615f, 1.232968f),
+               Quaternion.Euler(-26.074f, -53.43f, -0.7220001f),
+               new Vector3(1, 1, 1));
         if (gameObject.name == "ak_content_0")
         {
             MatrixPose = Matrix1 * OriginPos; 
         }
         else if (gameObject.name == "ak_content_1")
         {
-            MatrixPose = Matrix2 * Matrix1 * OriginPos;
+            MatrixPose = Matrix2 *  OriginPos;
         }
         else if(gameObject.name == "ak_content_2")
         {
-            MatrixPose = Matrix3 * Matrix1 * OriginPos;
+            MatrixPose = Matrix3 * OriginPos;
         }
 
 
