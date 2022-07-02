@@ -178,7 +178,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2510570274084323822}
   - component: {fileID: 5337425520734171550}
-  - component: {fileID: 6756668861766993485}
+  - component: {fileID: 5736075768156085252}
+  - component: {fileID: 2936117015170236861}
   m_Layer: 0
   m_Name: VRMale
   m_TagString: Untagged
@@ -221,11 +222,11 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 6756668861766993485}
+  - {fileID: 2936117015170236861}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &6756668861766993485
+--- !u!114 &5736075768156085252
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -234,6 +235,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 7257929698362599201}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 908d851ddd101c845ae33ce2adff99bc, type: 3}
+  m_Script: {fileID: 11500000, guid: fb5d11f25e8f42243a8ce6bea3b4b5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2936117015170236861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257929698362599201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
