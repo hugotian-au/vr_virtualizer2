@@ -1731,36 +1731,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 550258048}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &580198193
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 580198194}
-  m_Layer: 0
-  m_Name: ak_content
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &580198194
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 580198193}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0760374, y: 1.0103528, z: 1.5771824}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 40
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &597973352
 GameObject:
   m_ObjectHideFlags: 0
@@ -3995,7 +3965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localPlayerPrefab: {fileID: 4022969012399640027, guid: 07d3ca6f5555673409e1cf813bb5e63d,
     type: 3}
-  remotePlayerPrefab: {fileID: 7257929698362599201, guid: e36946e232908b04b848d7c030b230bc,
+  remotePlayerPrefab: {fileID: 8454322627639240642, guid: 3acd1bf28da2bd84685d8423ffa8fab9,
     type: 3}
   vrdrawLeftPrefab: {fileID: 3890019208996153163, guid: 8d59174c3a6006643aa4ccba960a914a,
     type: 3}
@@ -4294,7 +4264,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1640398109}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 580f3de0ced82fe4c9bb15357c4bed57, type: 3}
   m_Name: 
