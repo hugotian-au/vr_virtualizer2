@@ -85,12 +85,12 @@ namespace DilmerGames
         {
             if (gameObject.name == "VRDrawLeft(Clone)")
             {
-                var trackObject = GameObject.Find("OculusTouchForQuestAndRiftS_Left");
+                var trackObject = GameObject.Find("LeftHandAnchor");
                 objectToTrackMovement = trackObject;
             }
             if (gameObject.name == "VRDrawRight(Clone)")
             {
-                var trackObject = GameObject.Find("OculusTouchForQuestAndRiftS_Right");
+                var trackObject = GameObject.Find("RightHandAnchor");
                 objectToTrackMovement = trackObject;
             }
 
