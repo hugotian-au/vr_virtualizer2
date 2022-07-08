@@ -670,18 +670,6 @@ public class akplay : MonoBehaviour {
                 {
                     vizArrayTemp[i] = GameObject.Instantiate(visualizationPrefab);
                     vizArrayTemp[i].name = "Visualization_" + i;
-                    if (i == 0)
-                    {
-                        vizArrayTemp[i].transform.parent = akContent0.transform;
-                    }
-                    else if (i == 1)
-                    {
-                        vizArrayTemp[i].transform.parent = akContent1.transform;
-                    }
-                    else
-                    {
-                        vizArrayTemp[i].transform.parent = akContent2.transform;
-                    }
 
                     skelVisArrayTemp[i] = new Dictionary<uint, SkeletonVis>();
                 }
@@ -763,6 +751,19 @@ public class akplay : MonoBehaviour {
             
             ci.serial = getSerial(i);
             Debug.Log("Camera " + i + ": serial- " + ci.serial);
+
+            if (ci.serial == 668194612)
+            {
+                visualizationArray[i].transform.parent = akContent0.transform;
+            }
+            else if (ci.serial == 676294612)
+            {
+                visualizationArray[i].transform.parent = akContent1.transform;
+            }
+            else if (ci.serial == 457594512)
+            {
+                visualizationArray[i].transform.parent = akContent2.transform;
+            }
 
             ci.color_width = getColorWidth(i);
             ci.color_height = getColorHeight(i);
