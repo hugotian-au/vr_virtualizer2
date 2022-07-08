@@ -21,7 +21,7 @@ public class MyLiveObjectParentPosition : MonoBehaviour
         //Matrix2.SetTRS(new Vector3(-1.2798654f, 0.8009058f, 1.2420996f),
         //               Quaternion.Euler(-1.877354f, 89.60242f, -63.634f),
         //               new Vector3(1, 1, 1));
-        Matrix2.SetTRS(new Vector3(1.664f, 2.557f, -0.89f),
+        Matrix2.SetTRS(new Vector3(1.664f, 2.605f, -0.89f),
                        Quaternion.Euler(-29.005f, 142.615f, -2.913f),
                        new Vector3(1, 1, 1));
         // Camera3.Position
