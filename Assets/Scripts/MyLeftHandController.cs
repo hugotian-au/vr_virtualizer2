@@ -17,8 +17,8 @@ public class MyLeftHandController : MonoBehaviour
     {
         if (leftHandController != null)
         {
-            transform.localPosition = leftHandController.transform.localPosition;
-            transform.localRotation = leftHandController.transform.localRotation;
+            transform.localPosition = leftHandController.transform.position;
+            transform.localRotation = leftHandController.transform.rotation;
         }
     }
 }

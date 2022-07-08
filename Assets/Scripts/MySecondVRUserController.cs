@@ -16,8 +16,8 @@ public class MySecondVRUserController : MonoBehaviour
     {
         if (vrUserController != null)
         {
-            transform.localPosition = vrUserController.transform.localPosition - new Vector3(0.0f, 1.8f, 0.0f);
-            transform.localRotation = vrUserController.transform.localRotation;
+            transform.localPosition = vrUserController.transform.position - new Vector3(0.0f, 1.8f, 0.0f);
+            transform.localRotation = vrUserController.transform.rotation;
         }
     }
 }
