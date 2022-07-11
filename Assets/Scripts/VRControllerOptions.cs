@@ -77,8 +77,8 @@ namespace DilmerGames
             if(controlHand == ControlHand.Left)
             {
                 // toggle screen control
-                if(OVRInput.GetDown(OVRInput.RawButton.X) || Input.GetKeyDown(KeyCode.X))
-                    ToggleScreen();
+                // if(OVRInput.GetDown(OVRInput.RawButton.X) || Input.GetKeyDown(KeyCode.X))
+                //    ToggleScreen();
 
                 // increment slider value
                 if((OVRInput.Get(OVRInput.Button.PrimaryThumbstickRight) || Input.GetKey(KeyCode.RightArrow)) && ShoudActivateSlider())
@@ -108,8 +108,8 @@ namespace DilmerGames
             else if(controlHand == ControlHand.Right)
             {
                 // toggle screen control
-                if(OVRInput.GetDown(OVRInput.RawButton.A) || Input.GetKeyDown(KeyCode.Z))
-                    ToggleScreen();
+                // if(OVRInput.GetDown(OVRInput.RawButton.A) || Input.GetKeyDown(KeyCode.Z))
+                //     ToggleScreen();
 
                 // increment slider value
                 if((OVRInput.Get(OVRInput.Button.SecondaryThumbstickRight) || Input.GetKey(KeyCode.RightArrow)) && ShoudActivateSlider())

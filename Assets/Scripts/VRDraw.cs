@@ -130,6 +130,22 @@ namespace DilmerGames
             cameraPosition = Camera.main.transform.position;
             if (controlHand == ControlHand.Left)
             {
+                // Remove all lines
+                if(OVRInput.GetDown(OVRInput.RawButton.X))
+                {
+                    //ToggleScreen();
+                    foreach (var line in lines)
+                    {
+                        if (line != null)
+                        {
+                            // Destroy(line.gameObject);
+                            line.SetVertexCount(1);
+                            //lines.Remove(line); 
+                        }
+                    }
+                }
+
+
                 if (OVRInput.Get(OVRInput.Button.Four))
                 {
                     needDrawLine = true;
@@ -152,6 +168,21 @@ namespace DilmerGames
 
             if (controlHand == ControlHand.Right)
             {
+                // Remove all lines
+                if(OVRInput.GetDown(OVRInput.RawButton.A))
+                {
+                    foreach (var line in lines)
+                    {
+                        if (line != null)
+                        {
+                            // Destroy(line.gameObject);
+                            line.SetVertexCount(1);
+                            //lines.Remove(line);
+                        }
+                    }
+                }
+
+
                 if (OVRInput.Get(OVRInput.Button.Two))
                 {
                     needDrawLine = true;
