@@ -13,7 +13,7 @@ namespace DilmerGames
         private int numCapVectices;
         private Vector3 linePosition;
         private Vector3 cameraPosition;
-        private bool removeLines = false;
+        private int removeLines = 0;
 
         private bool needDrawLine = false;
         private bool lineDrawn = false;
@@ -140,7 +140,7 @@ namespace DilmerGames
                         if (line != null)
                         {
                             line.SetVertexCount(1);
-                            removeLines = true;
+                            removeLines = 1;
                         }
                     }
                 }
@@ -163,7 +163,7 @@ namespace DilmerGames
                 {
                     AddNewLineRenderer();
                     lineDrawn = false;
-                    removeLines = false;
+                    removeLines = 0;
                 }
             }
 
@@ -177,7 +177,7 @@ namespace DilmerGames
                         if (line != null)
                         {
                             line.SetVertexCount(1);
-                            removeLines = true;
+                            removeLines = 1;
                         }
                     }
                 }
@@ -200,7 +200,7 @@ namespace DilmerGames
                 {
                     AddNewLineRenderer();
                     lineDrawn = false;
-                    removeLines = false;
+                    removeLines = 0;
                 }
             }
 
@@ -262,32 +262,15 @@ namespace DilmerGames
             if (stream.IsWriting)
             {
                 cameraPosition = Camera.main.transform.position;
-
+                stream.SendNext(removeLines);
                 stream.SendNext(current_index);
-                // stream.SendNext(trackPosition);
-                stream.SendNext(lineDefaultWidth);
-                // stream.SendNext(positionCount);
-                // stream.SendNext(numCapVectices);
                 stream.SendNext(prevPointDistance);
                 print("prevPointDistance is " + prevPointDistance);
                 stream.SendNext(cameraPosition);
-                // stream.SendNext(defaultColor);
-                stream.SendNext(minDistanceBeforeNewPoint);
-                stream.SendNext(removeLines);
-
             }
             else
             {
-                current_index = (int)stream.ReceiveNext();
-                // trackPosition = (Vector3)stream.ReceiveNext();
-                lineDefaultWidth = (float)stream.ReceiveNext();
-                // positionCount = (int)stream.ReceiveNext();
-                // numCapVectices = (int)stream.ReceiveNext();
-                prevPointDistance = (Vector3)stream.ReceiveNext();
-                cameraPosition = (Vector3)stream.ReceiveNext();
-                // defaultColor = (Color)stream.ReceiveNext();
-                minDistanceBeforeNewPoint = (float)stream.ReceiveNext();
-                removeLines = (bool)stream.ReceiveNext();
+
             }
         }
     }
