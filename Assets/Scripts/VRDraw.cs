@@ -140,9 +140,9 @@ namespace DilmerGames
                         if (line != null)
                         {
                             line.SetVertexCount(1);
-                            removeLines = 1;
                         }
                     }
+                    removeLines = 1;
                 }
 
 
@@ -177,9 +177,9 @@ namespace DilmerGames
                         if (line != null)
                         {
                             line.SetVertexCount(1);
-                            removeLines = 1;
                         }
                     }
+                    removeLines = 1;
                 }
 
 
@@ -267,6 +267,10 @@ namespace DilmerGames
                 stream.SendNext(prevPointDistance);
                 print("prevPointDistance is " + prevPointDistance);
                 stream.SendNext(cameraPosition);
+                if (removeLines == 1)
+                {
+                    removeLines = 0;
+                }
             }
             else
             {
