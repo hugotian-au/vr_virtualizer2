@@ -13,6 +13,7 @@ namespace DilmerGames
         private int numCapVectices;
         private Vector3 linePosition;
         private Vector3 cameraPosition;
+        private bool removeLines = false;
 
         private bool needDrawLine = false;
         private bool lineDrawn = false;
@@ -138,9 +139,8 @@ namespace DilmerGames
                     {
                         if (line != null)
                         {
-                            // Destroy(line.gameObject);
                             line.SetVertexCount(1);
-                            //lines.Remove(line); 
+                            removeLines = true;
                         }
                     }
                 }
@@ -163,6 +163,7 @@ namespace DilmerGames
                 {
                     AddNewLineRenderer();
                     lineDrawn = false;
+                    removeLines = false;
                 }
             }
 
@@ -175,9 +176,8 @@ namespace DilmerGames
                     {
                         if (line != null)
                         {
-                            // Destroy(line.gameObject);
                             line.SetVertexCount(1);
-                            //lines.Remove(line);
+                            removeLines = true;
                         }
                     }
                 }
@@ -200,6 +200,7 @@ namespace DilmerGames
                 {
                     AddNewLineRenderer();
                     lineDrawn = false;
+                    removeLines = false;
                 }
             }
 
@@ -268,9 +269,11 @@ namespace DilmerGames
                 // stream.SendNext(positionCount);
                 // stream.SendNext(numCapVectices);
                 stream.SendNext(prevPointDistance);
+                print("prevPointDistance is " + prevPointDistance);
                 stream.SendNext(cameraPosition);
                 // stream.SendNext(defaultColor);
                 stream.SendNext(minDistanceBeforeNewPoint);
+                stream.SendNext(removeLines);
 
             }
             else
@@ -284,6 +287,7 @@ namespace DilmerGames
                 cameraPosition = (Vector3)stream.ReceiveNext();
                 // defaultColor = (Color)stream.ReceiveNext();
                 minDistanceBeforeNewPoint = (float)stream.ReceiveNext();
+                removeLines = (bool)stream.ReceiveNext();
             }
         }
     }
