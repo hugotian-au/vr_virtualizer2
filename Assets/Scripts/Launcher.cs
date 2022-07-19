@@ -170,11 +170,12 @@ namespace Photon.Pun.Demo.PunBasics
 				// #Critical
 				// Load the Room Level. 
 				// PhotonNetwork.LoadLevel("VuforiaTracker");
-				PhotonNetwork.LoadLevel("room_practice_solution");
-				PhotonNetwork.LoadLevel("room_condition1_solution1");
-				PhotonNetwork.LoadLevel("room_condition1_solution2");
-				PhotonNetwork.LoadLevel("room_condition2_solution1");
-				PhotonNetwork.LoadLevel("room_condition2_solution2");
+				PhotonNetwork.LoadLevel("room_practice_condition1_solution");
+				// PhotonNetwork.LoadLevel("room_practice_condition2_solution");
+				// PhotonNetwork.LoadLevel("room_condition1_solution1");
+				// PhotonNetwork.LoadLevel("room_condition1_solution2");
+				// PhotonNetwork.LoadLevel("room_condition2_solution1");
+				// PhotonNetwork.LoadLevel("room_condition2_solution2");
 
 			}
 		}
