@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.SceneManagement;
 
 public class MySceneObjectManager : MonoBehaviourPunCallbacks
 {
@@ -26,6 +27,11 @@ public class MySceneObjectManager : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        var scene_name = SceneManager.GetActiveScene().name;
+        if (scene_name.Contains("condition1"))
+        {
+            return;
+        }
         if (created) return;
         created = true;
         // PhotonNetwork.SetMasterClient(PhotonNetwork.MasterClient.GetNext());
