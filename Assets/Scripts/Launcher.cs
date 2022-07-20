@@ -10,6 +10,8 @@
 
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
+using UnityEngine.SceneManagement;
 
 using Photon.Realtime;
 
@@ -65,6 +67,26 @@ namespace Photon.Pun.Demo.PunBasics
 		/// </summary>
 		void Start()
 		{
+			const string path = "Assets/Scenes/";
+			const string exten = ".unity";
+			const string defaultSceneName = "room";
+			// Change scene name for Photon Network to load the correct one
+			/* for participant 1 */
+			const string sceneName = "room_practice_condition1_solution";
+			// const string sceneName = "room_practice_condition2_solution";
+			/* for participant 2 */
+			// const string sceneName = "room_practice_condition1_solution";
+			// const string sceneName = "room_practice_condition2_solution";
+			/* for participant 1 */
+			// const string sceneName = "room_condition1_solution1";
+			// const string sceneName = "room_condition2_solution1";
+			/* for participant 2 */
+			// const string sceneName = "room_condition1_solution2";
+			// const string sceneName = "room_condition2_solution2";
+
+			AssetDatabase.DeleteAsset(path + defaultSceneName + exten);
+			AssetDatabase.CopyAsset(path + sceneName + exten, path + defaultSceneName + exten);
+
 			// progressLabel.SetActive(false);
 			// controlPanel.SetActive(false);
 			print("Called by start");
@@ -170,13 +192,7 @@ namespace Photon.Pun.Demo.PunBasics
 				// #Critical
 				// Load the Room Level. 
 				// PhotonNetwork.LoadLevel("VuforiaTracker");
-				PhotonNetwork.LoadLevel("room_practice_condition1_solution");
-				// PhotonNetwork.LoadLevel("room_practice_condition2_solution");
-				// PhotonNetwork.LoadLevel("room_condition1_solution1");
-				// PhotonNetwork.LoadLevel("room_condition1_solution2");
-				// PhotonNetwork.LoadLevel("room_condition2_solution1");
-				// PhotonNetwork.LoadLevel("room_condition2_solution2");
-
+				PhotonNetwork.LoadLevel("room");
 			}
 		}
 
