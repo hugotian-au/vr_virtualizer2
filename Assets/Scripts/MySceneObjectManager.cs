@@ -31,7 +31,7 @@ public class MySceneObjectManager : MonoBehaviourPunCallbacks
         }
         if (soma_cubes == null)
         {
-            has_soma_cubes = GameObject.Find("condition2_solution2");
+            soma_cubes = GameObject.Find("condition2_solution2");
         }
     }
 
