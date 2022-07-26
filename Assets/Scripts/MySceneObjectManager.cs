@@ -18,17 +18,26 @@ public class MySceneObjectManager : MonoBehaviourPunCallbacks
 
     private bool created = false;
 
+    private bool has_soma_cubes = false;
+
 
     // Start is called before the first frame update
     void Start()
     {
-
+        has_soma_cubes = GameObject.Find("practice_condition2_solution");
+        if (has_soma_cubes == null)
+        {
+            has_soma_cubes = GameObject.Find("condition2_solution1");
+        }
+        if (has_soma_cubes == null)
+        {
+            has_soma_cubes = GameObject.Find("condition2_solution2");
+        }
     }
 
     void Update()
     {
-        var scene_name = SceneManager.GetActiveScene().name;
-        if (scene_name.Contains("condition1"))
+        if (has_soma_cubes == null)
         {
             return;
         }
