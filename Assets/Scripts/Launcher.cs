@@ -84,8 +84,8 @@ namespace Photon.Pun.Demo.PunBasics
 			// const string sceneName = "room_condition1_solution2";
 			// const string sceneName = "room_condition2_solution2";
 
-			AssetDatabase.DeleteAsset(path + defaultSceneName + exten);
-			AssetDatabase.CopyAsset(path + sceneName + exten, path + defaultSceneName + exten);
+			// AssetDatabase.DeleteAsset(path + defaultSceneName + exten);
+			// AssetDatabase.CopyAsset(path + sceneName + exten, path + defaultSceneName + exten);
 
 			// progressLabel.SetActive(false);
 			// controlPanel.SetActive(false);
