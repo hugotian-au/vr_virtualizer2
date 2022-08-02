@@ -5,10 +5,22 @@ using Photon.Pun;
 
 public class MyOvrGrabbable : OVRGrabbable
 {
+    public GameObject soma_cubes;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        soma_cubes = GameObject.Find("condition1_and_condition2");
+    }
 
     override public void GrabBegin(OVRGrabber hand, Collider grabPoint)
     {
         Debug.Log("DAGGASOFT: GRAB BEGIN");
+        if (soma_cubes == null)
+        {
+            return;
+        }
 
         //Your code goes here
         var pv = GetComponent<PhotonView>();
@@ -25,6 +37,10 @@ public class MyOvrGrabbable : OVRGrabbable
     override public void GrabEnd(Vector3 linearVelocity, Vector3 angularVelocity)
     {
         Debug.Log("DAGGASOFT: GRAB END");
+        if (soma_cubes == null)
+        {
+            return;
+        }
 
         //Your code goes here
 

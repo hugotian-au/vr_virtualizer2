@@ -39,7 +39,7 @@ public class MySceneObjectManager : MonoBehaviourPunCallbacks
     {
         if (soma_cubes == null)
         {
-            return;
+            //return;
         }
         if (created) return;
         created = true;
