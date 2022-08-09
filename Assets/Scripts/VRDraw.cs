@@ -18,6 +18,8 @@ namespace DilmerGames
         private bool needDrawLine = false;
         private bool lineDrawn = false;
 
+        private GameObject annotation;
+
         [SerializeField]
         private ControlHand controlHand = ControlHand.NoSet;
 
@@ -95,6 +97,8 @@ namespace DilmerGames
                 objectToTrackMovement = trackObject;
             }
 
+            annotation = GameObject.Find("Annotation");
+
             AddNewLineRenderer();
         }
 
@@ -126,6 +130,10 @@ namespace DilmerGames
 
         void Update()
         {
+            if (annotation == null)
+            {
+                return;
+            }
             //#if !UNITY_EDITOR
             // primary left controller
             cameraPosition = Camera.main.transform.position;
