@@ -14,21 +14,21 @@ public class MyLiveObjectParentPosition : MonoBehaviour
     void Start()
     {
         // Don't change this, Camera1.Position
-        Matrix1.SetTRS(new Vector3(1.6789f, 2.586f, 1.228833f),
-                       Quaternion.Euler(-29.396f, 32.843f, -2.317f),
+        Matrix1.SetTRS(new Vector3(1.6089f, 2.636f, 1.268833f),
+                       Quaternion.Euler(-30.512f, 30.318f, -0.189f),
                        new Vector3(1, 1, 1));
         // Camera2.Position
         //Matrix2.SetTRS(new Vector3(-1.2798654f, 0.8009058f, 1.2420996f),
         //               Quaternion.Euler(-1.877354f, 89.60242f, -63.634f),
         //               new Vector3(1, 1, 1));
-        Matrix2.SetTRS(new Vector3(1.664f, 2.605f, -0.89f),
-                       Quaternion.Euler(-29.005f, 142.615f, -2.913f),
+        Matrix2.SetTRS(new Vector3(1.664f, 2.620f, -0.87f),
+                       Quaternion.Euler(-30.005f, 142.615f, 0.113f),
                        new Vector3(1, 1, 1));
         // Camera3.Position
         //Matrix3.SetTRS(new Vector3(1.7427824f, 1.2180851f, 2.1037217f),
         //               Quaternion.Euler(5.35802f, -71.978f, 45.8632f),
         //               new Vector3(1, 1, 1));
-        Matrix3.SetTRS(new Vector3(-1.61f, 2.615f, 1.232968f),
+        Matrix3.SetTRS(new Vector3(-1.62f, 2.615f, 1.252968f),
                Quaternion.Euler(-26.074f, -53.43f, -0.7220001f),
                new Vector3(1, 1, 1));
         if (gameObject.name == "ak_content_0")
