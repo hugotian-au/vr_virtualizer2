@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DilmerGames.Enums;
 using DilmerGames.Core.Utilities;
 using Photon.Pun;
+using System;
 
 namespace DilmerGames
 {
@@ -56,6 +57,10 @@ namespace DilmerGames
         
         public VRControllerOptions VRControllerOptions => vrControllerOptions;
 
+        private bool recordStartTime = false;
+
+        private GameObject timer;
+
         /*
         void Awake() 
         {
@@ -100,6 +105,8 @@ namespace DilmerGames
             annotation = GameObject.Find("Annotation");
 
             AddNewLineRenderer();
+
+            timer = GameObject.Find("Timer");
         }
 
         void AddNewLineRenderer()
@@ -169,6 +176,10 @@ namespace DilmerGames
                 }
                 if (lineDrawn && OVRInput.GetUp(OVRInput.Button.PrimaryIndexTrigger))
                 {
+
+                    var script = timer.GetComponent<RecoredDurationTime>();
+                    script.hasStudyStarts = true;
+
                     AddNewLineRenderer();
                     lineDrawn = false;
                     removeLines = 0;
