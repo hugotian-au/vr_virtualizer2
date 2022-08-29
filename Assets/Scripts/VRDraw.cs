@@ -217,6 +217,9 @@ namespace DilmerGames
                 }
                 if (lineDrawn && OVRInput.GetUp(OVRInput.Button.SecondaryIndexTrigger))
                 {
+                    var script = timer.GetComponent<RecoredDurationTime>();
+                    script.hasStudyStarts = true;
+
                     AddNewLineRenderer();
                     lineDrawn = false;
                     removeLines = 0;

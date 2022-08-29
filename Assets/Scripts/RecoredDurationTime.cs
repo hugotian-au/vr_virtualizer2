@@ -26,7 +26,7 @@ public class RecoredDurationTime : MonoBehaviour
             {
                 //var curTime = Time.time.ToString();
                 var curTime = System.DateTime.Now;
-                hasStudyStarts = true;
+                hasRecordStartTime = true;
                 string path = Application.dataPath + "/" + recordTimeFileName;
                 if (!System.IO.File.Exists(path))
                     System.IO.File.WriteAllText(path, "start_time:" + curTime + "\n");
