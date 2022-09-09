@@ -28,10 +28,13 @@ public class MyOvrGrabbable : OVRGrabbable
         var pv = GetComponent<PhotonView>();
         pv.RequestOwnership();
 
-        //var rb = GetComponent<Rigidbody>();
+        var rb = GetComponent<Rigidbody>();
         //rb.isKinematic = false;
         //rb.detectCollisions = true;
         //rb.WakeUp();
+        rb.mass = 2;
+        rb.drag = 0;
+        rb.angularDrag = 1;
         var script = timer.GetComponent<RecoredDurationTime>();
         script.hasStudyStarts = true;
 
@@ -52,6 +55,9 @@ public class MyOvrGrabbable : OVRGrabbable
         var rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.detectCollisions = true;
+        rb.mass = 200;
+        rb.drag = 100;
+        rb.angularDrag = 100;
         rb.WakeUp();
     }
 }
