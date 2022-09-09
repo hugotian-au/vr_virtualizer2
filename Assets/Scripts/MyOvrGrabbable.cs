@@ -55,7 +55,7 @@ public class MyOvrGrabbable : OVRGrabbable
         var rb = GetComponent<Rigidbody>();
         rb.isKinematic = false;
         rb.detectCollisions = true;
-        rb.mass = 2000;
+        rb.mass = 200000;
         rb.drag = 20;
         rb.angularDrag = 50;
         rb.WakeUp();
