@@ -13,7 +13,10 @@ using UnityEngine.UI;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
+using System.Runtime.InteropServices;
+
 using Photon.Realtime;
+
 
 namespace Photon.Pun.Demo.PunBasics
 {
@@ -48,6 +51,19 @@ namespace Photon.Pun.Demo.PunBasics
 
 		#endregion
 
+		#region import dll functions
+		/// [DllImport("unity_test_dll", EntryPoint = "MyAddFunction")]
+		[DllImport("open3d_wrapper", EntryPoint = "MyAddFunction")]
+		///public static extern int NumCores();
+
+		public static extern int MyAddFunction(int x, int y);
+
+		[DllImport("open3d_wrapper", EntryPoint = "GetKinectDeviceCount")]
+		///public static extern int NumCores();
+
+		public static extern int GetKinectDeviceCount();
+		#endregion
+
 		#region MonoBehaviour CallBacks
 
 		/// <summary>
@@ -55,7 +71,11 @@ namespace Photon.Pun.Demo.PunBasics
 		/// </summary>
 		void Awake()
 		{
+			///int ret = NumCores();
+			int ret = MyAddFunction(10, 5);
 			print("Launcher is called by Awake");
+
+			ret = GetKinectDeviceCount();
 			// #Critical
 			// this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
 			PhotonNetwork.AutomaticallySyncScene = true;
